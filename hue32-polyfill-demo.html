@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hue₃₂ CSS Polyfill Demo</title>
+
+<!-- Load the Hue₃₂ polyfill — that's all you need -->
+<script src="hue32-polyfill.js"></script>
+
+<style>
+  /* ── All colors written in Hue₃₂ notation ── */
+
+  :root {
+    --ink:     hue32(none, 2, 0);       /* near black       */
+    --paper:   hue32(none, 31, 0);      /* warm white       */
+    --accent:  hue32(B32, 12, 20);      /* deep navy        */
+    --gold:    hue32(Y32, 22, 18);      /* antique gold     */
+    --muted:   hue32(none, 18, 0);      /* mid gray         */
+    --rule:    hue32(none, 26, 0);      /* light gray       */
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: system-ui, sans-serif;
+    line-height: 1.6;
+    padding: 3rem 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  h1 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent); }
+  h2 { font-size: 1.2rem; margin: 2rem 0 1rem; color: var(--accent); }
+  p  { color: var(--muted); margin-bottom: 1rem; }
+  code {
+    font-family: monospace; font-size: 0.9em;
+    background: var(--rule); padding: 0.1em 0.4em; border-radius: 3px;
+  }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 2rem 0; }
+
+  /* ── Color swatches written in Hue₃₂ ── */
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem; margin-bottom: 2rem;
+  }
+  .swatch { border-radius: 10px; overflow: hidden; }
+  .swatch-color { height: 80px; }
+  .swatch-label {
+    padding: 0.5rem 0.75rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: none;
+    font-size: 0.75rem;
+    font-family: monospace;
+  }
+  .swatch-name {
+    font-weight: bold; font-size: 0.8rem;
+    margin-bottom: 0.2rem; font-family: system-ui;
+  }
+
+  /* ── Button examples ── */
+  .button-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .btn {
+    padding: 0.6rem 1.4rem; border-radius: 8px;
+    border: none; cursor: pointer; font-size: 0.9rem;
+    font-family: system-ui;
+  }
+
+  /* ── Code block ── */
+  .code-block {
+    background: var(--ink); color: var(--paper);
+    border-radius: 10px; padding: 1.5rem;
+    font-family: monospace; font-size: 0.85rem;
+    line-height: 1.8; overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+  .code-block .comment { color: hue32(none, 18, 0); }
+  .code-block .fn      { color: hue32(Y32, 28, 20); }
+  .code-block .string  { color: hue32(G32, 24, 18); }
+  .code-block .prop    { color: hue32(B32, 22, 22); }
+
+  /* ── API demo ── */
+  .api-demo {
+    border: 1px solid var(--rule);
+    border-radius: 10px; padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .api-demo label {
+    display: block; font-size: 0.75rem; font-family: monospace;
+    color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .api-demo input {
+    font-family: monospace; font-size: 0.9rem;
+    padding: 0.4rem 0.6rem; border: 1px solid var(--rule);
+    border-radius: 6px; width: 100%; margin-bottom: 0.75rem;
+  }
+  .api-result {
+    height: 48px; border-radius: 8px;
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; padding: 0 1rem;
+    font-family: monospace; font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+</style>
+</head>
+<body>
+
+<h1>Hue₃₂ CSS Polyfill</h1>
+<p>Every color on this page is written in Hue₃₂ notation. One script tag is all it takes.</p>
+
+<div class="code-block"><span class="comment">&lt;!-- Drop this in your &lt;head&gt; --&gt;</span>
+&lt;script src="<span class="string">hue32-polyfill.js</span>"&gt;&lt;/script&gt;
+
+<span class="comment">/* Then use hue32() anywhere in your CSS */</span>
+<span class="prop">background-color</span>: <span class="fn">hue32</span>(<span class="string">R23Y9</span>, 24, 15);
+<span class="prop">color</span>:            <span class="fn">hue32</span>(<span class="string">none</span>, 2, 0);
+<span class="prop">--brand</span>:          <span class="fn">hue32</span>(<span class="string">B32</span>, 12, 20);</div>
+
+<hr>
+
+<h2>Color swatches</h2>
+<div class="swatches">
+  <div class="swatch">
+    <div class="swatch-color" style="background: hue32(R32, 20, 21)"></div>
+    <div class="swatch-label">
+      <div class="swatch-name">Red</div>
+      hue32(R32, 20, 21)
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: hue32(R23Y9, 24, 15)"></div>
+    <div class="swatch-label">
+      <div class="swatch-name">Orange</div>
+      hue32(R23Y9, 24, 15)
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: hue32(Y32, 31, 17)"></div>
+    <div class="swatch-label">
+      <div class="swatch-name">Yellow</div>
+      hue32(Y32, 31, 17)
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: hue32(G32, 28, 24)"></div>
+    <div class="swatch-label">
+      <div class="swatch-name">Green</div>
+      hue32(G32, 28, 24)
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: hue32(B32, 15, 25)"></div>
+    <div class="swatch-label">
+      <div class="swatch-name">Blue</div>
+      hue32(B32, 15, 25)
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: hue32(B16M16, 15, 26)"></div>
+    <div class="swatch-label">
+      <div class="swatch-name">Violet</div>
+      hue32(B16M16, 15, 26)
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: hue32(B13M19, 12, 15)"></div>
+    <div class="swatch-label">
+      <div class="swatch-name">Indigo</div>
+      hue32(B13M19, 12, 15)
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: hue32(M32, 23, 26)"></div>
+    <div class="swatch-label">
+      <div class="swatch-name">Magenta</div>
+      hue32(M32, 23, 26)
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background: hue32(none, 20, 0)"></div>
+    <div class="swatch-label">
+      <div class="swatch-name">Gray</div>
+      hue32(none, 20, 0)
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h2>Buttons</h2>
+<div class="button-row">
+  <button class="btn" style="background: hue32(B32, 12, 20); color: hue32(none, 31, 0)">
+    Primary
+  </button>
+  <button class="btn" style="background: hue32(G32, 18, 20); color: hue32(none, 31, 0)">
+    Success
+  </button>
+  <button class="btn" style="background: hue32(R32, 16, 24); color: hue32(none, 31, 0)">
+    Danger
+  </button>
+  <button class="btn" style="background: hue32(Y32, 22, 18); color: hue32(none, 4, 0)">
+    Warning
+  </button>
+  <button class="btn" style="background: hue32(none, 26, 0); color: hue32(none, 8, 0)">
+    Neutral
+  </button>
+</div>
+
+<hr>
+
+<h2>JavaScript API</h2>
+<p>The polyfill also exposes <code>window.Hue32</code> for setting colors programmatically.</p>
+
+<div class="code-block"><span class="comment">// Set a CSS custom property</span>
+<span class="fn">Hue32</span>.set('<span class="string">--brand</span>', '<span class="string">R23Y9</span>', 24, 15);
+
+<span class="comment">// Convert to hex</span>
+<span class="fn">Hue32</span>.toHex('<span class="string">B13M19</span>', 12, 15);  <span class="comment">// '#4B0082'</span>
+
+<span class="comment">// Apply a color map</span>
+<span class="fn">Hue32</span>.apply({
+  '<span class="string">--primary</span>':    ['<span class="string">B32</span>',   12, 20],
+  '<span class="string">--background</span>': ['<span class="string">none</span>',  31,  0],
+  '<span class="string">--text</span>':       ['<span class="string">none</span>',   2,  0],
+});</div>
+
+<div class="api-demo">
+  <label>Try it — enter a Hue₃₂ hue (e.g. R23Y9, B32, none):</label>
+  <input type="text" id="apiHue" value="R23Y9" placeholder="R23Y9">
+  <label>Shade (1–32):</label>
+  <input type="number" id="apiShade" value="24" min="1" max="32">
+  <label>Tone (0–32):</label>
+  <input type="number" id="apiTone" value="15" min="0" max="32">
+  <div class="api-result" id="apiResult">
+    #FF8000
+  </div>
+</div>
+
+<hr>
+
+<p style="font-size:0.85rem; color: var(--muted)">
+  Hue₃₂ Polyfill v1.0 &nbsp;·&nbsp;
+  <a href="https://hue32.studio">hue32.studio</a> &nbsp;·&nbsp;
+  <a href="https://github.com/andoran74/hue32">GitHub</a> &nbsp;·&nbsp;
+  CC BY 4.0
+</p>
+
+<script>
+// Live API demo
+function updateApiDemo() {
+  const hue   = document.getElementById('apiHue').value.trim() || 'none';
+  const shade = parseFloat(document.getElementById('apiShade').value) || 16;
+  const tone  = parseFloat(document.getElementById('apiTone').value)  || 0;
+  try {
+    const hex = Hue32.toHex(hue, shade, tone);
+    const result = document.getElementById('apiResult');
+    result.style.background = hex;
+    // Choose text color based on shade
+    result.style.color = shade > 16 ? '#0D1117' : '#F7F4EF';
+    result.textContent = hex + '  ←  hue32(' + hue + ', ' + shade + ', ' + tone + ')';
+  } catch(e) {
+    document.getElementById('apiResult').textContent = 'Invalid notation';
+  }
+}
+
+['apiHue','apiShade','apiTone'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateApiDemo);
+});
+updateApiDemo();
+</script>
+
+</body>
+</html>
