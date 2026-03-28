@@ -49,6 +49,10 @@ Conversion path:
 
 Dependencies:
   colour-science  (pip install colour-science)
+
+License:
+  CC BY-NC 4.0 — non-commercial use only.
+  Commercial licensing: angel@angeldoran.com
 """
 
 import colour
