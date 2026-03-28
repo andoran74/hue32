@@ -4,7 +4,8 @@
  * A human-readable, device-independent color notation anchored to OKLCh.
  *
  * @version 1.0.0
- * @license CC-BY-4.0
+ * @license CC-BY-NC-4.0
+ * Commercial use requires a separate written agreement — angel@angeldoran.com
  * @author Angel Doran
  * @see https://hue32.studio
  */
@@ -485,3 +486,4 @@ export default {
   VALID_PAIRS,
   DELTA_E,
 };
+
