@@ -3,6 +3,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
+<link rel="apple-touch-icon" href="favicon-32x32.png"/>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR7HKZS2CS"></script>
 <script>
@@ -14,19 +19,29 @@
 
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Hue₃₂ — Color That Speaks for Itself</title>
+<meta name="description" content="Hue₃₂ is a human-readable color notation system. Convert any color — hex, RGB, CMYK, HSL, HSB, LAB — to a code that tells you exactly what color it is."/>
+<meta property="og:title" content="Hue₃₂ — Color That Speaks for Itself"/>
+<meta property="og:description" content="A notation system where every color code tells you exactly what color it is. No lookup tables, no guessing."/>
+<meta property="og:url" content="https://hue32.studio"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Outfit:wght@300;400;600;900&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --ink:    #0D1117;
-    --paper:  #F7F4EF;
-    --accent: #1F3864;
-    --gold:   #C8A84B;
-    --muted:  #8A8680;
-    --rule:   #D8D4CE;
-    --r:  #FF3B30; --y: #FFCC00; --g: #34C759;
-    --c:  #32ADE6; --b: #007AFF; --m: #FF2D55;
+    /* Hex values — Hue₃₂ equivalents shown in comments */
+    --ink:    #0D1117;   /* hue32(none, 6, 0)     — near black    */
+    --paper:  #F7F4EF;   /* hue32(none, 31, 0)    — warm white    */
+    --accent: #1F3864;   /* hue32(B31C1, 12, 7)   — deep navy     */
+    --gold:       #8B6914;  /* 4.6:1 on light bg — AA — use on paper/white */
+    --gold-light: #C8A84B;  /* 8.3:1 on dark bg  — AAA — use on black/navy */
+    --muted:  #6B6560;   /* hue32(none, 20, 0)    — mid gray      */
+    --rule:   #D8D4CE;   /* hue32(none, 28, 0)    — light gray    */
+    --r:  #FF3B30;       /* hue32(R32, 21, 19)    — red           */
+    --y:  #FFCC00;       /* hue32(R8Y24, 28, 15)  — yellow        */
+    --g:  #34C759;       /* hue32(G29C3, 24, 16)  — green         */
+    --c:  #32ADE6;       /* hue32(B18C14, 23, 11) — cyan          */
+    --b:  #007AFF;       /* hue32(B29C3, 20, 18)  — blue          */
+    --m:  #FF2D55;       /* hue32(R26M6, 21, 19)  — magenta       */
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -140,9 +155,11 @@
 }
 
   section { margin: 4rem 0; }
+  .main-column > section:first-child { margin-top: 1.5rem; }
+  .tool-sidebar > section:first-child { margin-top: 1.5rem; }
   .section-label {
-    font-family: 'DM Mono', monospace; font-size: 0.7rem;
-    letter-spacing: 0.18em; text-transform: uppercase;
+    font-family: 'DM Mono', monospace; font-size: 0.75rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--gold); margin-bottom: 0.6rem;
   }
   h2 {
@@ -168,8 +185,9 @@
   .comp-col:last-child { border-right: none; }
   .comp-col.hue32 { background: #314d7d; color: var(--paper); }
   .comp-label {
-    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
     letter-spacing: 0.15em; text-transform: uppercase;
+    font-size: 0.72rem;
     color: var(--muted); margin-bottom: 0.8rem;
   }
   .comp-col.hue32 .comp-label { color: rgba(247,244,239,0.5); }
@@ -245,7 +263,7 @@
   .input-group label {
     display: block; font-family: 'DM Mono', monospace;
     font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 0.4rem;
+    color: var(--gold-dark); margin-bottom: 0.4rem;
   }
   .input-group input {
     width: 100%; background: rgba(255,255,255,0.08);
@@ -254,7 +272,7 @@
     color: var(--paper); font-family: 'DM Mono', monospace;
     font-size: 0.8rem; outline: none; transition: border-color 0.2s;
   }
-  .input-group input:focus { border-color: var(--gold); }
+  .input-group input:focus { border-color: var(--gold-dark); }
   .input-group input::placeholder { color: rgba(247,244,239,0.25); }
 
   .converter-output {
@@ -278,11 +296,11 @@
     overflow: hidden;
     text-overflow: clip;
   }
-  .notation-decoded { font-size: 0.85rem; line-height: 2; }
+  .notation-decoded { font-size: 0.9rem; line-height: 2; }
   .decoded-line { color: rgba(247,244,239,0.55); }
   .decoded-line strong { color: var(--paper); font-weight: 500; }
   .decoded-line .axis-val {
-    color: var(--gold); font-weight: 500;
+    color: var(--gold-dark); font-weight: 500;
   }
 
   .rgb-inputs, .cmyk-inputs { display: grid; gap: 0.5rem; }
@@ -348,7 +366,7 @@
   }
   .wheel-result-hex {
     font-family: 'DM Mono', monospace; font-size: 0.8rem;
-    color: rgba(247,244,239,0.45); margin-top: 0.25rem;
+    color: rgba(247,244,239,0.60); margin-top: 0.25rem;
   }
 
   /* ── FOOTER ── */
@@ -382,10 +400,10 @@
     font-size: clamp(1rem, 2.5vw, 1.5rem);
     font-weight: 500; letter-spacing: 0.03em;
   }
-  .ng-hue   { color: #C8A84B; }
+  .ng-hue   { color: var(--gold-dark); }
   .ng-shade { color: #5B8DD9; }
   .ng-tone  { color: #34C759; }
-  .ng-luster, .ng-fluor { color: #8A8680; }
+  .ng-luster, .ng-fluor { color: #6B6560; }
 
   .notation-axes {
     display: grid;
@@ -403,12 +421,13 @@
     font-size: 1.8rem; line-height: 1; margin-bottom: 0.2rem;
   }
   .axis-name {
-    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
     letter-spacing: 0.15em; text-transform: uppercase;
+    font-size: 0.72rem;
     color: var(--muted); margin-bottom: 0.6rem;
   }
   .axis-explain {
-    font-size: 0.82rem; color: var(--ink); line-height: 1.6;
+    font-size: 0.9rem; color: var(--ink); line-height: 1.6;
   }
   .axis-explain strong {
     font-family: 'DM Mono', monospace; font-weight: 500;
@@ -416,8 +435,9 @@
 
   .notation-examples-strip { margin-top: 1rem; }
   .notation-strip-label {
-    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
     letter-spacing: 0.15em; text-transform: uppercase;
+    font-size: 0.72rem;
     color: var(--muted); margin-bottom: 0.8rem;
   }
   .notation-strips {
@@ -436,12 +456,12 @@
   }
   .nstrip-swatch { height: 48px; }
   .nstrip-code {
-    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    font-family: 'DM Mono', monospace; font-size: 0.8rem;
     font-weight: 500; padding: 0.5rem 0.75rem 0.2rem;
     color: var(--ink);
   }
   .nstrip-read {
-    font-size: 0.72rem; color: var(--muted);
+    font-size: 0.8rem; color: var(--muted);
     padding: 0 0.75rem 0.6rem; line-height: 1.4;
   }
 
@@ -470,7 +490,7 @@
   }
   .report-btn:hover {
     border-color: rgba(200,168,75,0.5);
-    color: var(--gold);
+    color: var(--gold-dark);
   }
   .report-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
 
@@ -495,14 +515,14 @@
     color: var(--paper);
   }
   .report-modal .report-sub {
-    font-size: 0.82rem; color: rgba(247,244,239,0.45);
+    font-size: 0.82rem; color: rgba(247,244,239,0.60);
     margin-bottom: 1.5rem;
   }
   .report-field { margin-bottom: 1rem; }
   .report-field label {
     display: block; font-family: 'DM Mono', monospace;
     font-size: 0.6rem; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--gold);
+    text-transform: uppercase; color: var(--gold-dark);
     margin-bottom: 0.4rem;
   }
   .report-field input,
@@ -518,17 +538,17 @@
   .report-field input:focus,
   .report-field textarea:focus { border-color: var(--gold); }
   .report-field input[readonly] {
-    color: rgba(247,244,239,0.45);
+    color: rgba(247,244,239,0.60);
     cursor: default;
   }
   .report-actions {
     display: flex; gap: 0.75rem; margin-top: 1.5rem;
   }
   .report-send {
-    flex: 1; background: var(--gold); color: var(--ink);
+    flex: 1; background: var(--gold-light); color: var(--ink);
     border: none; border-radius: 8px; padding: 0.7rem 1rem;
     font-family: 'Outfit', sans-serif; font-weight: 600;
-    font-size: 0.9rem; cursor: pointer;
+    font-size: 0.95rem; cursor: pointer;
     transition: opacity 0.2s;
   }
   .report-send:hover { opacity: 0.85; }
@@ -536,10 +556,201 @@
     background: none; border: 1px solid rgba(255,255,255,0.15);
     color: rgba(247,244,239,0.5); border-radius: 8px;
     padding: 0.7rem 1rem; font-family: 'Outfit', sans-serif;
-    font-size: 0.9rem; cursor: pointer;
+    font-size: 0.95rem; cursor: pointer;
     transition: border-color 0.2s;
   }
   .report-cancel:hover { border-color: rgba(255,255,255,0.4); }
+
+  /* ── NAME PROBLEM SECTION ── */
+  .name-problem {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 700px) {
+    .name-problem { grid-template-columns: 1fr; }
+  }
+  .name-swatch-group {
+    display: flex; gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .name-swatch {
+    width: 48px; height: 80px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.08);
+    flex-shrink: 0;
+  }
+  .name-caption {
+    font-size: 0.78rem; color: var(--muted);
+    font-style: italic; max-width: 280px;
+  }
+  .name-explanation p {
+    font-size: 0.95rem; color: var(--ink);
+    margin-bottom: 1rem; line-height: 1.7;
+  }
+  .name-insight {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.15rem !important;
+    color: var(--accent) !important;
+    margin-top: 1.5rem !important;
+  }
+
+  /* ── SOLUTION DISPLAY ── */
+  .name-solution {
+    display: flex; gap: 1.5rem; align-items: center;
+    background: var(--ink); color: var(--paper);
+    border-radius: 14px; padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .solution-color {
+    width: 80px; height: 80px; border-radius: 10px;
+    flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1);
+  }
+  .solution-label {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(247,244,239,0.60); margin-bottom: 0.4rem;
+  }
+  .solution-code {
+    font-family: 'DM Mono', monospace; font-size: 1.3rem;
+    font-weight: 500; color: var(--paper);
+    margin-bottom: 0.75rem; letter-spacing: 0.02em;
+  }
+  .solution-read {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+  .sol-tag {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px; padding: 0.2rem 0.6rem;
+    font-family: 'DM Mono', monospace; font-size: 0.78rem;
+  }
+  .solution-caption {
+    font-size: 0.85rem; color: rgba(247,244,239,0.5);
+    font-style: italic;
+  }
+  @media (max-width: 500px) {
+    .name-solution { flex-direction: column; }
+    .solution-color { width: 100%; height: 60px; }
+  }
+
+  /* ── TURQUOISE HERO ── */
+  .turquoise-hero {
+    padding: 0 0 2rem;
+  }
+  .turquoise-hero h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .turquoise-hero .hero-sub {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1rem; color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+  .turquoise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.6rem; margin-bottom: 1.5rem;
+  }
+  .turquoise-swatch {
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .turquoise-swatch-color { height: 72px; }
+  .turquoise-swatch-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem; padding: 0.4rem 0.5rem;
+    color: var(--muted); line-height: 1.3;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: none;
+  }
+  .turquoise-reveal {
+    background: var(--ink); color: var(--paper);
+    border-radius: 14px; padding: 2rem;
+    margin-top: 2rem; text-align: left;
+  }
+  .turquoise-reveal h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; margin-bottom: 0.5rem;
+    color: var(--paper);
+  }
+  .turquoise-reveal p {
+    font-family: 'Outfit', sans-serif;
+    color: rgba(247,244,239,0.65);
+    font-size: 0.95rem; margin-bottom: 1.5rem;
+    max-width: 52ch;
+  }
+  .turquoise-example {
+    display: flex; align-items: center; gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .turquoise-example-swatch {
+    width: 80px; height: 80px; border-radius: 12px;
+    background: #40E0D0; flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .turquoise-example-code {
+    font-family: 'DM Mono', monospace;
+  }
+  .turquoise-example-notation {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 500; color: var(--paper);
+    margin-bottom: 0.4rem;
+  }
+  .turquoise-example-decoded {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    color: rgba(247,244,239,0.5);
+    line-height: 1.8;
+  }
+  .turquoise-example-decoded span {
+    color: var(--gold-dark);
+  }
+
+  /* ── CONVERTER TABS ── */
+  .conv-swatch-row {
+    margin-bottom: 1rem;
+  }
+  .conv-swatch-row .output-swatch {
+    width: 100%; height: 80px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.3s;
+  }
+  .conv-result-block {
+    margin-bottom: 1.2rem;
+    min-height: 60px;
+  }
+  .conv-tabs {
+    display: flex; flex-wrap: wrap; gap: 0.3rem;
+    margin-bottom: 1rem;
+  }
+  .conv-tab {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(247,244,239,0.5);
+    border-radius: 6px; padding: 0.3rem 0.6rem;
+    font-family: 'DM Mono', monospace; font-size: 0.8rem;
+    cursor: pointer; transition: all 0.15s;
+    letter-spacing: 0.05em;
+  }
+  .conv-tab:hover {
+    border-color: rgba(200,168,75,0.4);
+    color: rgba(247,244,239,0.8);
+  }
+  .conv-tab.active {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .conv-panel { display: none; }
+  .conv-panel.active { display: block; }
 </style>
 </head>
 <body>
@@ -563,10 +774,88 @@
 </div>
 <p class="intro">A notation system where every color code tells you exactly what color it is — no lookup tables, no guessing.</p>
 </header>
-<main><div class="page-layout"><div class="main-column"><section>
+<main role="main"><div class="page-layout"><div class="main-column"><section class="turquoise-hero">
 <div class="section-label">The Problem</div>
-<h2>What color is this?</h2>
-<p class="sub">Three systems, one color. Only one tells you anything.</p>
+<h2>What color is turquoise?</h2>
+<p class="hero-sub">Ask ten people. Get ten different answers.</p>
+
+<div class="turquoise-grid">
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#40E0D0"></div>
+    <div class="turquoise-swatch-name">Classic turquoise</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#00C7D2"></div>
+    <div class="turquoise-swatch-name">Blue turquoise</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#1ABC9C"></div>
+    <div class="turquoise-swatch-name">Green turquoise</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#008080"></div>
+    <div class="turquoise-swatch-name">Teal turquoise</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#08E8DE"></div>
+    <div class="turquoise-swatch-name">Bright turquoise</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#AFEEEE"></div>
+    <div class="turquoise-swatch-name">Pale turquoise</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#00CED1"></div>
+    <div class="turquoise-swatch-name">Dark turquoise</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#61CFDF"></div>
+    <div class="turquoise-swatch-name">Robin egg blue</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#00A2B8"></div>
+    <div class="turquoise-swatch-name">Turquoise blue</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#27A69A"></div>
+    <div class="turquoise-swatch-name">Persian turquoise</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#48D1CC"></div>
+    <div class="turquoise-swatch-name">Medium turquoise</div>
+  </div>
+  <div class="turquoise-swatch">
+    <div class="turquoise-swatch-color" style="background:#00DCC3"></div>
+    <div class="turquoise-swatch-name">Cyan turquoise</div>
+  </div>
+</div>
+
+<p style="font-size:0.85rem; color:var(--muted); margin-bottom:0">
+  There is no wrong answer. That is the problem.<br>
+  Color names are pointers that different people aim at different targets.
+</p>
+
+<div class="turquoise-reveal">
+  <h3>Hue₃₂ doesn't replace the name. It gives the name coordinates.</h3>
+  <p>Call it whatever you want. But when you need to communicate exactly which turquoise — to a paint manufacturer, a fabric supplier, a screen designer — you have a number that means the same thing to everyone.</p>
+  <div class="turquoise-example">
+    <div class="turquoise-example-swatch" style="background:#40E0D0"></div>
+    <div class="turquoise-example-code">
+      <div class="turquoise-example-notation">H:G6C26 S:26 T:11 L:0 F:0</div>
+      <div class="turquoise-example-decoded">
+        <span>G6C26</span> — mostly cyan, some green<br>
+        <span>S:26</span> — light<br>
+        <span>T:11</span> — moderately vivid<br>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<hr class="rule"/>
+<section>
+<div class="section-label">Why It Matters</div>
+<h2>What about codes?</h2>
+<p class="sub">Existing color codes solve the ambiguity — but create a new problem. They are precise but completely unreadable.</p>
 <div class="example-pair">
 <div class="example-title">Example 1 — Orange</div>
 <div class="comparison-grid">
@@ -634,7 +923,7 @@
 <div class="wheel-controls">
 <div class="slider-group">
 <div class="slider-label">
-<span class="slider-name">Shade (S)</span>
+<label for="sliderShade" class="slider-name">Shade (S)</label>
 <span class="slider-value" id="shadeVal">20</span>
 </div>
 <div class="slider-desc">1 = black  ·  16 = mid  ·  32 = white</div>
@@ -642,7 +931,7 @@
 </div>
 <div class="slider-group">
 <div class="slider-label">
-<span class="slider-name">Tone (T)</span>
+<label for="sliderTone" class="slider-name">Tone (T)</label>
 <span class="slider-value" id="toneVal">24</span>
 </div>
 <div class="slider-desc">1 = gray  ·  16 = moderate  ·  32 = vivid</div>
@@ -666,7 +955,7 @@
   </div>
   <div class="notation-axes">
     <div class="notation-axis">
-      <div class="axis-letter" style="color:#C8A84B">H</div>
+      <div class="axis-letter" style="color:var(--gold-dark)">H</div>
       <div class="axis-name">Hue</div>
       <div class="axis-explain">Two RYGCBM letters with numbers summing to 32. <strong>R22Y10</strong> = 22 parts red, 10 parts yellow. More of the first letter, leaning that direction. Pure colors use one letter: <strong>R32</strong>, <strong>B32</strong>.</div>
     </div>
@@ -681,12 +970,12 @@
       <div class="axis-explain">Gray to vivid on a 1–32 scale. <strong>T:1</strong> = gray. <strong>T:32</strong> = fully saturated. <strong>T:0</strong> = achromatic (no color information). <strong>T:15</strong> is moderately vivid.</div>
     </div>
     <div class="notation-axis">
-      <div class="axis-letter" style="color:#8A8680">L</div>
+      <div class="axis-letter" style="color:#6B6560">L</div>
       <div class="axis-name">Luster</div>
       <div class="axis-explain">Surface finish from matte to glossy. <strong>L:1</strong> = flat matte. <strong>L:32</strong> = high gloss. <strong>L:0</strong> = not encoded — digital color sources contain no surface information.</div>
     </div>
     <div class="notation-axis">
-      <div class="axis-letter" style="color:#8A8680">F</div>
+      <div class="axis-letter" style="color:#6B6560">F</div>
       <div class="axis-name">Fluorescence</div>
       <div class="axis-explain">UV-activated emission. <strong>F:1</strong> = none. <strong>F:32</strong> = intensely fluorescent. <strong>F:0</strong> = not encoded. Relevant for paint, textiles, makeup, and security printing.</div>
     </div>
@@ -727,39 +1016,109 @@
 </div><aside class="tool-sidebar"><section>
 <div class="section-label">Try It</div>
 <h2>Convert any color to Hue₃₂</h2>
-<p class="sub">Paste a hex code, enter RGB values, or type a Hue₃₂ notation to see how it works.</p>
+<p class="sub">Enter any color in any format. All values update together instantly.</p>
 <div class="converter-card">
-<div class="converter-inputs">
-<div class="input-group">
-<label>Hex code</label>
-<input id="hexInput" maxlength="7" placeholder="#FF8000" type="text"/>
+
+<!-- Color swatch -->
+<div class="conv-swatch-row">
+  <div class="output-swatch" id="convSwatch" style="background:#FF8000"></div>
 </div>
-<div class="input-group">
-<label>RGB</label>
-<div class="rgb-inputs">
-<input id="rInput" max="255" min="0" placeholder="R" type="number"/>
-<input id="gInput" max="255" min="0" placeholder="G" type="number"/>
-<input id="bInput" max="255" min="0" placeholder="B" type="number"/>
+
+<!-- Hue32 result -->
+<div class="conv-result-block">
+  <div class="notation-full" id="convNotation">H:R23Y9 S:24 T:15 L:0 F:0</div>
+  <div class="notation-decoded" id="convDecoded"></div>
 </div>
+
+<!-- Tab switcher -->
+<div class="conv-tabs">
+  <button class="conv-tab active" onclick="switchTab('hex', this)" aria-label="Switch to Hex input">Hex</button>
+  <button class="conv-tab" onclick="switchTab('rgb', this)" aria-label="Switch to RGB input">RGB</button>
+  <button class="conv-tab" onclick="switchTab('cmyk', this)" aria-label="Switch to CMYK input">CMYK</button>
+  <button class="conv-tab" onclick="switchTab('hsl', this)" aria-label="Switch to HSL input">HSL</button>
+  <button class="conv-tab" onclick="switchTab('hsb', this)" aria-label="Switch to HSB input">HSB</button>
+  <button class="conv-tab" onclick="switchTab('lab', this)" aria-label="Switch to LAB input">LAB</button>
+  <button class="conv-tab" onclick="switchTab('hue32', this)" aria-label="Switch to Hue32 input">Hue₃₂</button>
 </div>
-<div class="input-group">
-<label>CMYK</label>
-<div class="cmyk-inputs">
-<input id="cInput" max="100" min="0" placeholder="C" type="number"/>
-<input id="mInput" max="100" min="0" placeholder="M" type="number"/>
-<input id="yInput" max="100" min="0" placeholder="Y" type="number"/>
-<input id="kInput" max="100" min="0" placeholder="K" type="number"/>
+
+<!-- Hex input -->
+<div class="conv-panel active" id="panel-hex">
+  <div class="input-group">
+    <label for="hexInput">Hex code</label>
+    <input id="hexInput" maxlength="7" placeholder="#FF8000" type="text"/>
+  </div>
 </div>
+
+<!-- RGB input -->
+<div class="conv-panel" id="panel-rgb">
+  <div class="input-group">
+    <label>RGB (0–255 each)</label>
+    <div class="rgb-inputs">
+      <input id="rInput" max="255" min="0" placeholder="R" type="number" aria-label="Red (0-255)"/>
+      <input id="gInput" max="255" min="0" placeholder="G" type="number" aria-label="Green (0-255)"/>
+      <input id="bInput" max="255" min="0" placeholder="B" type="number" aria-label="Blue (0-255)"/>
+    </div>
+  </div>
 </div>
+
+<!-- CMYK input -->
+<div class="conv-panel" id="panel-cmyk">
+  <div class="input-group">
+    <label>CMYK (0–100 each)</label>
+    <div class="cmyk-inputs">
+      <input id="cInput" max="100" min="0" placeholder="C" type="number" aria-label="Cyan (0-100)"/>
+      <input id="mInput" max="100" min="0" placeholder="M" type="number" aria-label="Magenta (0-100)"/>
+      <input id="yInput" max="100" min="0" placeholder="Y" type="number" aria-label="Yellow (0-100)"/>
+      <input id="kInput" max="100" min="0" placeholder="K" type="number" aria-label="Black (0-100)"/>
+    </div>
+  </div>
 </div>
-<div class="converter-output">
-<div>
-<div class="notation-full" id="convNotation">H:R23Y9 S:24 T:15 L:0 F:0</div>
-<div class="notation-decoded" id="convDecoded"></div>
+
+<!-- HSL input -->
+<div class="conv-panel" id="panel-hsl">
+  <div class="input-group">
+    <label>HSL — Hue (0–360°), Saturation (0–100%), Lightness (0–100%)</label>
+    <div class="rgb-inputs">
+      <input id="hslH" max="360" min="0" placeholder="H°" type="number" aria-label="Hue degrees (0-360)"/>
+      <input id="hslS" max="100" min="0" placeholder="S%" type="number" aria-label="Saturation percent (0-100)"/>
+      <input id="hslL" max="100" min="0" placeholder="L%" type="number" aria-label="Lightness percent (0-100)"/>
+    </div>
+  </div>
 </div>
-<div class="output-swatch" id="convSwatch" style="background:#FF8000; min-width:120px; max-width:160px;"></div>
+
+<!-- HSB input -->
+<div class="conv-panel" id="panel-hsb">
+  <div class="input-group">
+    <label>HSB / HSV — Hue (0–360°), Saturation (0–100%), Brightness (0–100%)</label>
+    <div class="rgb-inputs">
+      <input id="hsbH" max="360" min="0" placeholder="H°" type="number" aria-label="Hue degrees (0-360)"/>
+      <input id="hsbS" max="100" min="0" placeholder="S%" type="number" aria-label="Saturation percent (0-100)"/>
+      <input id="hsbB" max="100" min="0" placeholder="B%" type="number" aria-label="Brightness percent (0-100)"/>
+    </div>
+  </div>
 </div>
-<button class="report-btn" onclick="openReport()">
+
+<!-- LAB input -->
+<div class="conv-panel" id="panel-lab">
+  <div class="input-group">
+    <label>CIE L*a*b* — L (0–100), a (-128–128), b (-128–128)</label>
+    <div class="rgb-inputs">
+      <input id="labL" max="100" min="0" placeholder="L*" type="number" step="0.1" aria-label="Lightness (0-100)"/>
+      <input id="labA" max="128" min="-128" placeholder="a*" type="number" step="0.1" aria-label="Green-Red axis (-128 to 128)"/>
+      <input id="labB" max="128" min="-128" placeholder="b*" type="number" step="0.1" aria-label="Blue-Yellow axis (-128 to 128)"/>
+    </div>
+  </div>
+</div>
+
+<!-- Hue32 input -->
+<div class="conv-panel" id="panel-hue32">
+  <div class="input-group">
+    <label for="hue32Input">Hue₃₂ notation</label>
+    <input id="hue32Input" placeholder="H:R23Y9 S:24 T:15 L:0 F:0" type="text"/>
+  </div>
+</div>
+
+<button class="report-btn" onclick="openReport()" aria-label="Report an incorrect result">
   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
     <circle cx="8" cy="8" r="6.5"/>
     <line x1="8" y1="5" x2="8" y2="8.5"/>
@@ -1179,23 +1538,193 @@ document.getElementById('sliderTone').addEventListener('input', function() {
 });
 
 // ─────────────────────────────────────────────────────────────
+// ADDITIONAL COLOR MATH
+// ─────────────────────────────────────────────────────────────
+
+// HSL → RGB
+function hslToRgb(h, s, l) {
+  s /= 100; l /= 100;
+  const k = n => (n + h / 30) % 12;
+  const a = s * Math.min(l, 1 - l);
+  const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+  return [Math.round(f(0)*255), Math.round(f(8)*255), Math.round(f(4)*255)];
+}
+
+// RGB → HSL
+function rgbToHsl(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r,g,b), min = Math.min(r,g,b);
+  let h, s, l = (max + min) / 2;
+  if (max === min) { h = s = 0; }
+  else {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch(max) {
+      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+      case g: h = ((b - r) / d + 2) / 6; break;
+      case b: h = ((r - g) / d + 4) / 6; break;
+    }
+  }
+  return [Math.round(h*360), Math.round(s*100), Math.round(l*100)];
+}
+
+// HSB → RGB
+function hsbToRgb(h, s, b) {
+  s /= 100; b /= 100;
+  const k = n => (n + h / 60) % 6;
+  const f = n => b * (1 - s * Math.max(0, Math.min(k(n), 4 - k(n), 1)));
+  return [Math.round(f(5)*255), Math.round(f(3)*255), Math.round(f(1)*255)];
+}
+
+// RGB → HSB
+function rgbToHsb(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r,g,b), min = Math.min(r,g,b), d = max - min;
+  let h = 0;
+  if (d !== 0) {
+    switch(max) {
+      case r: h = ((g - b) / d % 6); break;
+      case g: h = (b - r) / d + 2; break;
+      case b: h = (r - g) / d + 4; break;
+    }
+    h = Math.round(h * 60);
+    if (h < 0) h += 360;
+  }
+  return [h, Math.round(max === 0 ? 0 : d / max * 100), Math.round(max * 100)];
+}
+
+// CIE LAB → RGB
+function labToRgb(L, a, b) {
+  // LAB → XYZ (D65)
+  let fy = (L + 16) / 116;
+  let fx = a / 500 + fy;
+  let fz = fy - b / 200;
+  const d65 = [0.95047, 1.00000, 1.08883];
+  const f = t => t > 0.008856 ? t**3 : (t - 16/116) / 7.787;
+  let X = f(fx) * d65[0];
+  let Y = f(fy) * d65[1];
+  let Z = f(fz) * d65[2];
+  // XYZ → sRGB
+  let r =  3.2406*X - 1.5372*Y - 0.4986*Z;
+  let g = -0.9689*X + 1.8758*Y + 0.0415*Z;
+  let bv =  0.0557*X - 0.2040*Y + 1.0570*Z;
+  const gamma = v => v > 0.0031308 ? 1.055*v**(1/2.4) - 0.055 : 12.92*v;
+  return [
+    Math.round(Math.max(0,Math.min(1,gamma(r)))*255),
+    Math.round(Math.max(0,Math.min(1,gamma(g)))*255),
+    Math.round(Math.max(0,Math.min(1,gamma(bv)))*255),
+  ];
+}
+
+// RGB → CIE LAB
+function rgbToLab(r, g, b) {
+  // sRGB → linear
+  const lin = v => { v /= 255; return v > 0.04045 ? ((v+0.055)/1.055)**2.4 : v/12.92; };
+  const rl = lin(r), gl = lin(g), bl = lin(b);
+  // linear → XYZ D65
+  let X = 0.4124*rl + 0.3576*gl + 0.1805*bl;
+  let Y = 0.2126*rl + 0.7152*gl + 0.0722*bl;
+  let Z = 0.0193*rl + 0.1192*gl + 0.9505*bl;
+  // XYZ → LAB
+  const d65 = [0.95047, 1.00000, 1.08883];
+  const f = t => t > 0.008856 ? t**(1/3) : 7.787*t + 16/116;
+  const fx = f(X/d65[0]), fy = f(Y/d65[1]), fz = f(Z/d65[2]);
+  return [
+    Math.round((116*fy - 16) * 10) / 10,
+    Math.round((500*(fx - fy)) * 10) / 10,
+    Math.round((200*(fy - fz)) * 10) / 10,
+  ];
+}
+
+// Parse Hue32 notation string → RGB
+function parseHue32ToRgb(notation) {
+  const axisMap = {};
+  const labeled = notation.match(/([HSTLF]):([^\s]+)/g);
+  if (!labeled) return null;
+  labeled.forEach(part => {
+    const colon = part.indexOf(':');
+    axisMap[part.slice(0,colon)] = part.slice(colon+1);
+  });
+  const hueStr = axisMap.H || '';
+  const shade = parseFloat(axisMap.S) || 0;
+  const tone  = parseFloat(axisMap.T) || 0;
+
+  let hp = null, hpv = 0, hs = null, hsv = 0;
+  if (hueStr && hueStr.toLowerCase() !== 'none') {
+    const parts = [...hueStr.matchAll(/([RYGCBM])(\d+(?:\.\d+)?)/gi)];
+    if (parts.length >= 1) {
+      const l = parts[0][1].toUpperCase(), v = parseFloat(parts[0][2]);
+      if (['R','G','B'].includes(l)) { hp = l; hpv = v; }
+      else { hs = l; hsv = v; }
+    }
+    if (parts.length >= 2) {
+      const l = parts[1][1].toUpperCase(), v = parseFloat(parts[1][2]);
+      if (['Y','C','M'].includes(l)) { hs = l; hsv = v; }
+      else { hp = l; hpv = v; }
+    }
+  }
+
+  const hc = {hp, hpv, hs, hsv, shade, tone, luster:0, fluor:0};
+  const [r,g,b] = hue32ToRgb(hc);
+  return [r,g,b];
+}
+
+// ─────────────────────────────────────────────────────────────
 // CONVERTER
 // ─────────────────────────────────────────────────────────────
-function updateConverter(r,g,b) {
-  if (r===null) return;
-  let hc = rgbToHue32(r,g,b);
-  let hex = rgbToHex(r,g,b);
-  const [c,m,y,k] = rgbToCmyk(r,g,b);
+
+let _currentRgb = [255, 128, 0];
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.conv-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.conv-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+function updateConverter(r, g, b) {
+  if (r === null) return;
+  r = Math.max(0,Math.min(255,Math.round(r)));
+  g = Math.max(0,Math.min(255,Math.round(g)));
+  b = Math.max(0,Math.min(255,Math.round(b)));
+  _currentRgb = [r, g, b];
+
+  const hc = rgbToHue32(r, g, b);
+  const hex = rgbToHex(r, g, b);
+  const [c, m, y, k] = rgbToCmyk(r, g, b);
+  const [hslH, hslS, hslL] = rgbToHsl(r, g, b);
+  const [hsbH, hsbS, hsbB] = rgbToHsb(r, g, b);
+  const [labL, labA, labB] = rgbToLab(r, g, b);
+
+  // Update swatch
   document.getElementById('convSwatch').style.background = hex;
+
+  // Update Hue32 result
   document.getElementById('convNotation').textContent = notation(hc);
 
-  rInput.value = r; gInput.value = g; bInput.value = b;
-  cInput.value = c; mInput.value = m; yInput.value = y; kInput.value = k;
-  hexInput.value = hex;
+  // Update all input fields
+  document.getElementById('hexInput').value = hex;
+  document.getElementById('rInput').value = r;
+  document.getElementById('gInput').value = g;
+  document.getElementById('bInput').value = b;
+  document.getElementById('cInput').value = c;
+  document.getElementById('mInput').value = m;
+  document.getElementById('yInput').value = y;
+  document.getElementById('kInput').value = k;
+  document.getElementById('hslH').value = hslH;
+  document.getElementById('hslS').value = hslS;
+  document.getElementById('hslL').value = hslL;
+  document.getElementById('hsbH').value = hsbH;
+  document.getElementById('hsbS').value = hsbS;
+  document.getElementById('hsbB').value = hsbB;
+  document.getElementById('labL').value = labL;
+  document.getElementById('labA').value = labA;
+  document.getElementById('labB').value = labB;
+  document.getElementById('hue32Input').value = notation(hc);
 
   // Decoded meaning
-  let lines = [];
-  let hStr = hueString(hc);
+  const lines = [];
+  const hStr = hueString(hc);
   if (hStr !== 'none') {
     lines.push(`<div class="decoded-line">Hue &nbsp;<span class="axis-val">${hStr}</span> — ${decodeHue(hc)}</div>`);
   }
@@ -1203,44 +1732,114 @@ function updateConverter(r,g,b) {
   if (hc.tone > 0) {
     lines.push(`<div class="decoded-line">Tone &nbsp;<span class="axis-val">T:${fmt(hc.tone)}</span> — ${decodeTone(hc.tone)}</div>`);
   }
-  lines.push(`<div class="decoded-line" style="margin-top:0.5rem;color:rgba(247,244,239,0.3)">Luster and Fluorescence require physical measurement</div>`);
+  lines.push(`<div class="decoded-line" style="margin-top:0.4rem;color:rgba(247,244,239,0.50);font-size:0.75rem">L and F require physical measurement</div>`);
   document.getElementById('convDecoded').innerHTML = lines.join('');
 }
 
-let hexInput = document.getElementById('hexInput');
-let rInput = document.getElementById('rInput');
-let gInput = document.getElementById('gInput');
-let bInput = document.getElementById('bInput');
-let cInput = document.getElementById('cInput');
-let mInput = document.getElementById('mInput');
-let yInput = document.getElementById('yInput');
-let kInput = document.getElementById('kInput');
+// Input element references
+const hexInput  = document.getElementById('hexInput');
+const rInput    = document.getElementById('rInput');
+const gInput    = document.getElementById('gInput');
+const bInput    = document.getElementById('bInput');
+const cInput    = document.getElementById('cInput');
+const mInput    = document.getElementById('mInput');
+const yInput    = document.getElementById('yInput');
+const kInput    = document.getElementById('kInput');
 
+// Hex
 hexInput.addEventListener('input', () => {
   let v = hexInput.value.trim();
   if (!v.startsWith('#')) v = '#' + v;
-  let rgb = hexToRgb(v);
-  if (!rgb) return;
-  updateConverter(...rgb);
+  const rgb = hexToRgb(v);
+  if (rgb) updateConverter(...rgb);
 });
 
+// RGB
 [rInput, gInput, bInput].forEach(inp => {
   inp.addEventListener('input', () => {
-    let r=parseInt(rInput.value)||0, g=parseInt(gInput.value)||0, b=parseInt(bInput.value)||0;
-    r=Math.max(0,Math.min(255,r)); g=Math.max(0,Math.min(255,g)); b=Math.max(0,Math.min(255,b));
-    updateConverter(r,g,b);
+    updateConverter(
+      parseInt(rInput.value)||0,
+      parseInt(gInput.value)||0,
+      parseInt(bInput.value)||0
+    );
   });
 });
 
+// CMYK
 [cInput, mInput, yInput, kInput].forEach(inp => {
   inp.addEventListener('input', () => {
-    let c=parseInt(cInput.value)||0, m=parseInt(mInput.value)||0, y=parseInt(yInput.value)||0, k=parseInt(kInput.value)||0;
-    c=Math.max(0,Math.min(100,c));
-    m=Math.max(0,Math.min(100,m));
-    y=Math.max(0,Math.min(100,y));
-    k=Math.max(0,Math.min(100,k));
+    const c=Math.max(0,Math.min(100,parseInt(cInput.value)||0));
+    const m=Math.max(0,Math.min(100,parseInt(mInput.value)||0));
+    const y=Math.max(0,Math.min(100,parseInt(yInput.value)||0));
+    const k=Math.max(0,Math.min(100,parseInt(kInput.value)||0));
     updateConverter(...cmykToRgb(c,m,y,k));
   });
+});
+
+// HSL
+['hslH','hslS','hslL'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    const h=parseFloat(document.getElementById('hslH').value)||0;
+    const s=parseFloat(document.getElementById('hslS').value)||0;
+    const l=parseFloat(document.getElementById('hslL').value)||0;
+    updateConverter(...hslToRgb(h,s,l));
+  });
+});
+
+// HSB
+['hsbH','hsbS','hsbB'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    const h=parseFloat(document.getElementById('hsbH').value)||0;
+    const s=parseFloat(document.getElementById('hsbS').value)||0;
+    const b=parseFloat(document.getElementById('hsbB').value)||0;
+    updateConverter(...hsbToRgb(h,s,b));
+  });
+});
+
+// LAB
+['labL','labA','labB'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    const L=parseFloat(document.getElementById('labL').value)||0;
+    const a=parseFloat(document.getElementById('labA').value)||0;
+    const b=parseFloat(document.getElementById('labB').value)||0;
+    updateConverter(...labToRgb(L,a,b));
+  });
+});
+
+// Hue32 notation input
+document.getElementById('hue32Input').addEventListener('input', () => {
+  const val = document.getElementById('hue32Input').value.trim();
+  if (!val.includes('S:')) return; // wait for more input
+  const rgb = parseHue32ToRgb(val);
+  if (rgb) {
+    // update everything except the hue32 input itself
+    const [r,g,b] = rgb;
+    const hc = rgbToHue32(r,g,b);
+    const hex = rgbToHex(r,g,b);
+    const [c,m,y,k] = rgbToCmyk(r,g,b);
+    const [hslH,hslS,hslL] = rgbToHsl(r,g,b);
+    const [hsbH,hsbS,hsbB] = rgbToHsb(r,g,b);
+    const [labL,labA,labB] = rgbToLab(r,g,b);
+    document.getElementById('convSwatch').style.background = hex;
+    document.getElementById('convNotation').textContent = notation(hc);
+    document.getElementById('hexInput').value = hex;
+    document.getElementById('rInput').value = r;
+    document.getElementById('gInput').value = g;
+    document.getElementById('bInput').value = b;
+    document.getElementById('cInput').value = c;
+    document.getElementById('mInput').value = m;
+    document.getElementById('yInput').value = y;
+    document.getElementById('kInput').value = k;
+    document.getElementById('hslH').value = hslH;
+    document.getElementById('hslS').value = hslS;
+    document.getElementById('hslL').value = hslL;
+    document.getElementById('hsbH').value = hsbH;
+    document.getElementById('hsbS').value = hsbS;
+    document.getElementById('hsbB').value = hsbB;
+    document.getElementById('labL').value = labL;
+    document.getElementById('labA').value = labA;
+    document.getElementById('labB').value = labB;
+  }
 });
 
 // ─────────────────────────────────────────────────────────────
@@ -1277,6 +1876,8 @@ updateWheelResult();
 
 // Seed converter with orange
 updateConverter(255,128,0);
+// Also seed the nstrip onclick calls to work with new converter
+
 
 // ─────────────────────────────────────────────────────────────
 // REPORT A PROBLEM
@@ -1314,20 +1915,23 @@ function sendReport() {
 
   if (!desc) {
     document.getElementById('reportDesc').focus();
-    document.getElementById('reportDesc').style.borderColor = '#C8A84B';
+    document.getElementById('reportDesc').style.borderColor = '#8B6914';
     return;
   }
 
-  const subject = encodeURIComponent('Hue32 Problem Report');
-  const body = encodeURIComponent(
-    'COLOR ENTERED: ' + color + '\n' +
-    'HUE32 RESULT:  ' + result + '\n' +
-    'BROWSER:       ' + browser + '\n\n' +
-    'PROBLEM DESCRIPTION:\n' + desc +
-    (email ? '\n\nREPLY TO: ' + email : '')
+  const issueTitle = encodeURIComponent('Problem report: ' + color);
+  const issueBody = encodeURIComponent(
+    '**Color entered:** `' + color + '`\n' +
+    '**Hue₃₂ result:** `' + result + '`\n' +
+    '**Browser:** ' + browser + '\n\n' +
+    '**Problem description:**\n' + desc +
+    (email ? '\n\n**Contact:** ' + email : '')
   );
 
-  window.location.href = `mailto:angelique.doran@gmail.com?subject=${subject}&body=${body}`;
+  window.open(
+    `https://github.com/andoran74/hue32/issues/new?title=${issueTitle}&body=${issueBody}`,
+    '_blank'
+  );
 
   // Track in GA
   if (typeof gtag !== 'undefined') {
@@ -1348,7 +1952,7 @@ document.addEventListener('keydown', (e) => {
 <div class="report-overlay" id="reportOverlay" onclick="closeReportOnBg(event)">
   <div class="report-modal">
     <h3>Report a Problem</h3>
-    <p class="report-sub">Something look wrong? Let us know what you were converting and what seemed off.</p>
+    <p class="report-sub">Something look wrong? This will open a GitHub issue with the details pre-filled.</p>
     <div class="report-field">
       <label>Color you entered</label>
       <input type="text" id="reportColor" readonly/>
@@ -1362,12 +1966,12 @@ document.addEventListener('keydown', (e) => {
       <textarea id="reportDesc" rows="3" placeholder="e.g. The color shown doesn't look right, the hue seems off..."></textarea>
     </div>
     <div class="report-field">
-      <label>Your email (optional — only if you want a reply)</label>
-      <input type="email" id="reportEmail" placeholder="you@example.com"/>
+      <label>Your GitHub username (optional)</label>
+      <input type="text" id="reportEmail" placeholder="@username"/>
     </div>
     <div class="report-actions">
-      <button class="report-send" onclick="sendReport()">Send Report</button>
-      <button class="report-cancel" onclick="closeReport()">Cancel</button>
+      <button class="report-send" onclick="sendReport()" aria-label="Send problem report">Send Report</button>
+      <button class="report-cancel" onclick="closeReport()" aria-label="Cancel and close report">Cancel</button>
     </div>
   </div>
 </div>
