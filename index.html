@@ -9,12 +9,12 @@
 
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<link rel="icon" type="image/x-icon" href="favicon.ico"/>
-<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
-<link rel="apple-touch-icon" href="favicon-32x32.png"/>
+<meta charset="utf-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" href="favicon-32x32.png">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR7HKZS2CS"></script>
 <script>
@@ -24,15 +24,15 @@
   gtag('config', 'G-RR7HKZS2CS');
 </script>
 
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Hue₃₂ — Color That Speaks for Itself</title>
-<meta name="description" content="Hue₃₂ is a human-readable color notation system. Convert any color — hex, RGB, CMYK, HSL, HSB, LAB — to a code that tells you exactly what color it is."/>
-<meta property="og:title" content="Hue₃₂ — Color That Speaks for Itself"/>
-<meta property="og:description" content="A notation system where every color code tells you exactly what color it is. No lookup tables, no guessing."/>
-<meta property="og:url" content="https://hue32.studio"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Outfit:wght@300;400;600;900&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<meta name="description" content="Hue₃₂ is a human-readable color notation system. Convert any color — hex, RGB, CMYK, HSL, HSB, LAB — to a code that tells you exactly what color it is.">
+<meta property="og:title" content="Hue₃₂ — Color That Speaks for Itself">
+<meta property="og:description" content="A notation system where every color code tells you exactly what color it is. No lookup tables, no guessing.">
+<meta property="og:url" content="https://hue32.studio">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Outfit:wght@300;400;600;900&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
   :root {
     /* Hex values — Hue₃₂ equivalents shown in comments */
@@ -45,7 +45,7 @@
     --rule:   #D8D4CE;   /* hue32(none, 28, 0)    — light gray    */
     --r:  #FF3B30;       /* hue32(R32, 21, 19)    — red           */
     --y:  #FFCC00;       /* hue32(R8Y24, 28, 15)  — yellow        */
-    --g:  #34C759;       /* hue32(G29C3, 24, 16)  — green         */
+    --g:  #1B6B2E;       /* hue32(G29C3, 24, 16)  — green         */
     --c:  #32ADE6;       /* hue32(B18C14, 23, 11) — cyan          */
     --b:  #007AFF;       /* hue32(B29C3, 20, 18)  — blue          */
     --m:  #FF2D55;       /* hue32(R26M6, 21, 19)  — magenta       */
@@ -197,7 +197,7 @@
     font-size: 0.72rem;
     color: var(--muted); margin-bottom: 0.8rem;
   }
-  .comp-col.hue32 .comp-label { color: rgba(247,244,239,0.5); }
+  .comp-col.hue32 .comp-label { color: rgba(247,244,239,0.75); }
   .comp-code {
     font-family: 'DM Mono', monospace; font-size: 0.84rem;
     font-weight: 500; margin-bottom: 1rem;
@@ -211,7 +211,7 @@
   .comp-reaction {
     font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem;
   }
-  .comp-col.hue32 .comp-reaction { color: rgba(247,244,239,0.6); }
+  .comp-col.hue32 .comp-reaction { color: rgba(247,244,239,0.78); }
   .comp-readable {
     font-size: 0.9rem; line-height: 1.7;
   }
@@ -220,9 +220,9 @@
     border-radius: 4px; margin: 0.1rem 0.1rem 0.1rem 0;
     font-family: 'DM Mono', monospace; font-size: 0.8rem;
   }
-  .tag-hue  { background: rgba(255,255,255,0.15); }
-  .tag-shade{ background: rgba(255,255,255,0.1); }
-  .tag-tone { background: rgba(255,255,255,0.1); }
+  .tag-hue  { color: var(--paper); display: block; }
+  .tag-shade{ color: var(--paper); display: block; }
+  .tag-tone { color: var(--paper); display: block; }
   .color-swatch {
     width: 100%; height: 56px; border-radius: 8px;
     margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.08);
@@ -280,7 +280,7 @@
     font-size: 0.8rem; outline: none; transition: border-color 0.2s;
   }
   .input-group input:focus { border-color: var(--gold-dark); }
-  .input-group input::placeholder { color: rgba(247,244,239,0.25); }
+  .input-group input::placeholder { color: rgba(247,244,239,0.45); }
 
   .converter-output {
     display: grid;
@@ -408,8 +408,8 @@
     font-weight: 500; letter-spacing: 0.03em;
   }
   .ng-hue   { color: var(--gold-dark); }
-  .ng-shade { color: #5B8DD9; }
-  .ng-tone  { color: #34C759; }
+  .ng-shade { color: #6AABFF; }
+  .ng-tone  { color: #4CAF72; }
   .ng-luster, .ng-fluor { color: #6B6560; }
 
   .notation-axes {
@@ -689,7 +689,7 @@
   }
   .turquoise-reveal p {
     font-family: 'Outfit', sans-serif;
-    color: rgba(247,244,239,0.65);
+    color: rgba(247,244,239,0.75);
     font-size: 0.95rem; margin-bottom: 1.5rem;
     max-width: 52ch;
   }
@@ -764,7 +764,7 @@
 <!-- ── HEADER ── -->
 <header>
 <div class="logo-row">
-<svg class="logo-wheel" viewbox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+<svg class="logo-wheel" viewbox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-label="Hue₃₂ color wheel logo" role="img">
 <defs>
 <clippath id="innerClip"><circle cx="40" cy="40" r="28"></circle></clippath>
 </defs>
@@ -781,7 +781,7 @@
 </div>
 <p class="intro">A notation system where every color code tells you exactly what color it is — no lookup tables, no guessing.</p>
 </header>
-<main role="main"><div class="page-layout"><div class="main-column"><section class="turquoise-hero">
+<main><div class="page-layout"><div class="main-column"><section class="turquoise-hero">
 <div class="section-label">The Problem</div>
 <h2>What color is turquoise?</h2>
 <p class="hero-sub">Ask ten people. Get ten different answers.</p>
@@ -858,7 +858,7 @@
   </div>
 </div>
 </section>
-<hr class="rule"/>
+<hr class="rule">
 <section>
 <div class="section-label">Why It Matters</div>
 <h2>What about codes?</h2>
@@ -868,24 +868,24 @@
 <div class="comparison-grid">
 <div class="comp-col">
 <div class="comp-label">RGB</div>
-<div class="color-swatch" style="background:#FF8000"></div>
+<div class="color-swatch" style="background:#FF8000" aria-hidden="true"></div>
 <div class="comp-code">#FF8000</div>
 <div class="comp-reaction">🤨 I have no idea what color that is.</div>
 </div>
 <div class="comp-col">
 <div class="comp-label">CMYK</div>
-<div class="color-swatch" style="background:#FF8000"></div>
+<div class="color-swatch" style="background:#FF8000" aria-hidden="true"></div>
 <div class="comp-code">C0 M50 Y100 K0</div>
 <div class="comp-reaction">Maybe some type of orange.</div>
 </div>
 <div class="comp-col hue32">
 <div class="comp-label">Hue₃₂</div>
-<div class="color-swatch" style="background:#FF8000"></div>
+<div class="color-swatch" style="background:#FF8000" aria-hidden="true"></div>
 <div class="comp-code">H:R23Y9 S:24 T:15</div>
 <div class="comp-readable">
-<span class="tag-hue">mostly red, some yellow</span><br/>
-<span class="tag-shade">medium-light</span><br/>
-<span class="tag-tone">moderately vivid</span><br/><br/>
+<span class="tag-hue">mostly red, some yellow</span><br>
+<span class="tag-shade">medium-light</span><br>
+<span class="tag-tone">moderately vivid</span><br><br>
           Your brain can picture it.
         </div>
 </div>
@@ -896,36 +896,36 @@
 <div class="comparison-grid">
 <div class="comp-col">
 <div class="comp-label">RGB</div>
-<div class="color-swatch" style="background:#4B0082"></div>
+<div class="color-swatch" style="background:#4B0082" aria-hidden="true"></div>
 <div class="comp-code">#4B0082</div>
 <div class="comp-reaction">🤨 No idea.</div>
 </div>
 <div class="comp-col">
 <div class="comp-label">CMYK</div>
-<div class="color-swatch" style="background:#4B0082"></div>
+<div class="color-swatch" style="background:#4B0082" aria-hidden="true"></div>
 <div class="comp-code">C42 M100 Y0 K49</div>
 <div class="comp-reaction">Dark? Purple? Blue?</div>
 </div>
 <div class="comp-col hue32">
 <div class="comp-label">Hue₃₂</div>
-<div class="color-swatch" style="background:#4B0082"></div>
+<div class="color-swatch" style="background:#4B0082" aria-hidden="true"></div>
 <div class="comp-code">H:B13M19 S:12 T:15</div>
 <div class="comp-readable">
-<span class="tag-hue">mostly magenta, some blue</span><br/>
-<span class="tag-shade">dark</span><br/>
-<span class="tag-tone">moderately vivid</span><br/><br/>
+<span class="tag-hue">mostly magenta, some blue</span><br>
+<span class="tag-shade">dark</span><br>
+<span class="tag-tone">moderately vivid</span><br><br>
           Indigo. Immediately.
         </div>
 </div>
 </div>
 </div>
-</section><hr class="rule"/><section>
+</section><hr class="rule"><section>
 <div class="section-label">The Wheel</div>
 <h2>192 hues. Every one distinct.</h2>
-<p class="sub">Tap any position on the wheel to select a hue. Adjust shade and tone to see the full color space.</p>
+<p class="sub">Tap or click any position on the wheel to select a hue. Adjust shade and tone with the sliders below.</p>
 <div class="wheel-section">
 <div class="wheel-container">
-<canvas height="340" id="hueWheel" width="340"></canvas>
+<canvas height="340" id="hueWheel" width="340" tabindex="0" role="img" aria-label="Interactive Hue₃₂ color wheel — click to select a hue"></canvas>
 </div>
 <div class="wheel-controls">
 <div class="slider-group">
@@ -934,7 +934,7 @@
 <span class="slider-value" id="shadeVal">20</span>
 </div>
 <div class="slider-desc">1 = black  ·  16 = mid  ·  32 = white</div>
-<input id="sliderShade" max="32" min="1" type="range" value="20"/>
+<input id="sliderShade" max="32" min="1" type="range" value="20">
 </div>
 <div class="slider-group">
 <div class="slider-label">
@@ -942,7 +942,7 @@
 <span class="slider-value" id="toneVal">24</span>
 </div>
 <div class="slider-desc">1 = gray  ·  16 = moderate  ·  32 = vivid</div>
-<input id="sliderTone" max="32" min="1" type="range" value="24"/>
+<input id="sliderTone" max="32" min="1" type="range" value="24">
 </div>
 <div class="wheel-result">
 <div class="wheel-result-swatch" id="wheelSwatch"></div>
@@ -951,7 +951,7 @@
 </div>
 </div>
 </div>
-</section><hr class="rule"/><section>
+</section><hr class="rule"><section>
 <div class="section-label">The Notation</div>
 <h2>How to read a Hue₃₂ code</h2>
 <p class="sub">Every code is built from the same five axes. Once you know the pattern, any code is immediately readable.</p>
@@ -967,12 +967,12 @@
       <div class="axis-explain">Two RYGCBM letters with numbers summing to 32. <strong>R22Y10</strong> = 22 parts red, 10 parts yellow. More of the first letter, leaning that direction. Pure colors use one letter: <strong>R32</strong>, <strong>B32</strong>.</div>
     </div>
     <div class="notation-axis">
-      <div class="axis-letter" style="color:#5B8DD9">S</div>
+      <div class="axis-letter" style="color:#2B5BA9">S</div>
       <div class="axis-name">Shade</div>
       <div class="axis-explain">Light to dark on a 1–32 scale. <strong>S:1</strong> = black. <strong>S:16</strong> = medium. <strong>S:32</strong> = white. <strong>S:24</strong> is medium-light.</div>
     </div>
     <div class="notation-axis">
-      <div class="axis-letter" style="color:#34C759">T</div>
+      <div class="axis-letter" style="color:#1B6B2E">T</div>
       <div class="axis-name">Tone</div>
       <div class="axis-explain">Gray to vivid on a 1–32 scale. <strong>T:1</strong> = gray. <strong>T:32</strong> = fully saturated. <strong>T:0</strong> = achromatic (no color information). <strong>T:15</strong> is moderately vivid.</div>
     </div>
@@ -991,27 +991,27 @@
   <div class="notation-examples-strip">
     <div class="notation-strip-label">Try reading these:</div>
     <div class="notation-strips">
-      <div class="nstrip" onclick="updateConverter(255,0,0)">
+      <div class="nstrip" role="button" tabindex="0" onclick="updateConverter(255,0,0)" onkeypress="if(event.key===\'Enter\'|event.key===\' \'){updateConverter(255,0,0)}">
         <div class="nstrip-swatch" style="background:#FF0000"></div>
         <div class="nstrip-code">H:R32 S:20 T:21</div>
         <div class="nstrip-read">pure red · medium · vivid</div>
       </div>
-      <div class="nstrip" onclick="updateConverter(0,0,139)">
+      <div class="nstrip" role="button" tabindex="0" onclick="updateConverter(0,0,139)" onkeypress="if(event.key===\'Enter\'|event.key===\' \'){updateConverter(0,0,139)}">
         <div class="nstrip-swatch" style="background:#00008B"></div>
         <div class="nstrip-code">H:B32 S:9 T:20</div>
         <div class="nstrip-read">pure blue · dark · vivid</div>
       </div>
-      <div class="nstrip" onclick="updateConverter(255,182,193)">
+      <div class="nstrip" role="button" tabindex="0" onclick="updateConverter(255,182,193)" onkeypress="if(event.key===\'Enter\'|event.key===\' \'){updateConverter(255,182,193)}">
         <div class="nstrip-swatch" style="background:#FFB6C1"></div>
         <div class="nstrip-code">H:R21M11 S:27 T:8</div>
         <div class="nstrip-read">mostly red, some magenta · light · soft</div>
       </div>
-      <div class="nstrip" onclick="updateConverter(75,0,130)">
+      <div class="nstrip" role="button" tabindex="0" onclick="updateConverter(75,0,130)" onkeypress="if(event.key===\'Enter\'|event.key===\' \'){updateConverter(75,0,130)}">
         <div class="nstrip-swatch" style="background:#4B0082"></div>
         <div class="nstrip-code">H:B13M19 S:12 T:15</div>
         <div class="nstrip-read">mostly magenta, some blue · dark · moderate</div>
       </div>
-      <div class="nstrip" onclick="updateConverter(128,128,128)">
+      <div class="nstrip" role="button" tabindex="0" onclick="updateConverter(128,128,128)" onkeypress="if(event.key===\'Enter\'|event.key===\' \'){updateConverter(128,128,128)}">
         <div class="nstrip-swatch" style="background:#808080"></div>
         <div class="nstrip-code">H:none S:20 T:0</div>
         <div class="nstrip-read">achromatic · medium gray</div>
@@ -1052,18 +1052,18 @@
 <div class="conv-panel active" id="panel-hex">
   <div class="input-group">
     <label for="hexInput">Hex code</label>
-    <input id="hexInput" maxlength="7" placeholder="#FF8000" type="text"/>
+    <input id="hexInput" maxlength="7" placeholder="#FF8000" type="text">
   </div>
 </div>
 
 <!-- RGB input -->
 <div class="conv-panel" id="panel-rgb">
   <div class="input-group">
-    <label>RGB (0–255 each)</label>
-    <div class="rgb-inputs">
-      <input id="rInput" max="255" min="0" placeholder="R" type="number" aria-label="Red (0-255)"/>
-      <input id="gInput" max="255" min="0" placeholder="G" type="number" aria-label="Green (0-255)"/>
-      <input id="bInput" max="255" min="0" placeholder="B" type="number" aria-label="Blue (0-255)"/>
+    <label id="rgb-group-label">RGB (0–255 each)</label>
+    <div class="rgb-inputs" role="group" aria-labelledby="rgb-group-label">
+      <input id="rInput" max="255" min="0" placeholder="R" type="number" aria-label="Red (0-255)">
+      <input id="gInput" max="255" min="0" placeholder="G" type="number" aria-label="Green (0-255)">
+      <input id="bInput" max="255" min="0" placeholder="B" type="number" aria-label="Blue (0-255)">
     </div>
   </div>
 </div>
@@ -1071,12 +1071,12 @@
 <!-- CMYK input -->
 <div class="conv-panel" id="panel-cmyk">
   <div class="input-group">
-    <label>CMYK (0–100 each)</label>
-    <div class="cmyk-inputs">
-      <input id="cInput" max="100" min="0" placeholder="C" type="number" aria-label="Cyan (0-100)"/>
-      <input id="mInput" max="100" min="0" placeholder="M" type="number" aria-label="Magenta (0-100)"/>
-      <input id="yInput" max="100" min="0" placeholder="Y" type="number" aria-label="Yellow (0-100)"/>
-      <input id="kInput" max="100" min="0" placeholder="K" type="number" aria-label="Black (0-100)"/>
+    <label id="cmyk-group-label">CMYK (0–100 each)</label>
+    <div class="cmyk-inputs" role="group" aria-labelledby="cmyk-group-label">
+      <input id="cInput" max="100" min="0" placeholder="C" type="number" aria-label="Cyan (0-100)">
+      <input id="mInput" max="100" min="0" placeholder="M" type="number" aria-label="Magenta (0-100)">
+      <input id="yInput" max="100" min="0" placeholder="Y" type="number" aria-label="Yellow (0-100)">
+      <input id="kInput" max="100" min="0" placeholder="K" type="number" aria-label="Black (0-100)">
     </div>
   </div>
 </div>
@@ -1084,11 +1084,11 @@
 <!-- HSL input -->
 <div class="conv-panel" id="panel-hsl">
   <div class="input-group">
-    <label>HSL — Hue (0–360°), Saturation (0–100%), Lightness (0–100%)</label>
-    <div class="rgb-inputs">
-      <input id="hslH" max="360" min="0" placeholder="H°" type="number" aria-label="Hue degrees (0-360)"/>
-      <input id="hslS" max="100" min="0" placeholder="S%" type="number" aria-label="Saturation percent (0-100)"/>
-      <input id="hslL" max="100" min="0" placeholder="L%" type="number" aria-label="Lightness percent (0-100)"/>
+    <label id="hsl-group-label">HSL</label>
+    <div class="rgb-inputs" role="group" aria-labelledby="hsl-group-label">
+      <input id="hslH" max="360" min="0" placeholder="H°" type="number" aria-label="Hue degrees (0-360)">
+      <input id="hslS" max="100" min="0" placeholder="S%" type="number" aria-label="Saturation percent (0-100)">
+      <input id="hslL" max="100" min="0" placeholder="L%" type="number" aria-label="Lightness percent (0-100)">
     </div>
   </div>
 </div>
@@ -1096,11 +1096,11 @@
 <!-- HSB input -->
 <div class="conv-panel" id="panel-hsb">
   <div class="input-group">
-    <label>HSB / HSV — Hue (0–360°), Saturation (0–100%), Brightness (0–100%)</label>
-    <div class="rgb-inputs">
-      <input id="hsbH" max="360" min="0" placeholder="H°" type="number" aria-label="Hue degrees (0-360)"/>
-      <input id="hsbS" max="100" min="0" placeholder="S%" type="number" aria-label="Saturation percent (0-100)"/>
-      <input id="hsbB" max="100" min="0" placeholder="B%" type="number" aria-label="Brightness percent (0-100)"/>
+    <label id="hsb-group-label">HSB / HSV</label>
+    <div class="rgb-inputs" role="group" aria-labelledby="hsb-group-label">
+      <input id="hsbH" max="360" min="0" placeholder="H°" type="number" aria-label="Hue degrees (0-360)">
+      <input id="hsbS" max="100" min="0" placeholder="S%" type="number" aria-label="Saturation percent (0-100)">
+      <input id="hsbB" max="100" min="0" placeholder="B%" type="number" aria-label="Brightness percent (0-100)">
     </div>
   </div>
 </div>
@@ -1108,11 +1108,11 @@
 <!-- LAB input -->
 <div class="conv-panel" id="panel-lab">
   <div class="input-group">
-    <label>CIE L*a*b* — L (0–100), a (-128–128), b (-128–128)</label>
-    <div class="rgb-inputs">
-      <input id="labL" max="100" min="0" placeholder="L*" type="number" step="0.1" aria-label="Lightness (0-100)"/>
-      <input id="labA" max="128" min="-128" placeholder="a*" type="number" step="0.1" aria-label="Green-Red axis (-128 to 128)"/>
-      <input id="labB" max="128" min="-128" placeholder="b*" type="number" step="0.1" aria-label="Blue-Yellow axis (-128 to 128)"/>
+    <label id="lab-group-label">CIE L*a*b*</label>
+    <div class="rgb-inputs" role="group" aria-labelledby="lab-group-label">
+      <input id="labL" max="100" min="0" placeholder="L*" type="number" step="0.1" aria-label="Lightness (0-100)">
+      <input id="labA" max="128" min="-128" placeholder="a*" type="number" step="0.1" aria-label="Green-Red axis (-128 to 128)">
+      <input id="labB" max="128" min="-128" placeholder="b*" type="number" step="0.1" aria-label="Blue-Yellow axis (-128 to 128)">
     </div>
   </div>
 </div>
@@ -1121,12 +1121,12 @@
 <div class="conv-panel" id="panel-hue32">
   <div class="input-group">
     <label for="hue32Input">Hue₃₂ notation</label>
-    <input id="hue32Input" placeholder="H:R23Y9 S:24 T:15 L:0 F:0" type="text"/>
+    <input id="hue32Input" placeholder="H:R23Y9 S:24 T:15 L:0 F:0" type="text">
   </div>
 </div>
 
 <button class="report-btn" onclick="openReport()" aria-label="Report an incorrect result">
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
     <circle cx="8" cy="8" r="6.5"/>
     <line x1="8" y1="5" x2="8" y2="8.5"/>
     <circle cx="8" cy="11" r="0.6" fill="currentColor" stroke="none"/>
@@ -1134,11 +1134,10 @@
   Report incorrect result
 </button>
 </div>
-</div>
 </section></aside></div></main>
 <footer>
   <div class="footer-links">
-    <a href="hue32_specification.pdf">Specification v1.4</a>
+    <a href="hue32_specification.pdf" title="Hue₃₂ Specification v1.4 (PDF)">Specification v1.4</a>
     <span class="footer-dot">&nbsp;·&nbsp;</span>
     <a href="hue32.py">Reference Implementation</a>
     <span class="footer-dot">&nbsp;·&nbsp;</span>
@@ -1162,7 +1161,7 @@ const HUE_ANCHORS = ['R','Y','G','C','B','M'];
 const VISUAL_HUE_HEX = {
   R:'#FF3B30',
   Y:'#FFCC00',
-  G:'#34C759',
+  G:'#1B6B2E',
   C:'#32ADE6',
   B:'#007AFF',
   M:'#FF2D55'
@@ -1468,7 +1467,7 @@ function drawWheel(selectedDeg) {
   const hueLabelNames = ['R','Y','G','C','B','M'];
   const hueLabelAngles = [HUE_ANGLES.R, HUE_ANGLES.Y, HUE_ANGLES.G,
                           HUE_ANGLES.C, HUE_ANGLES.B, HUE_ANGLES.M];
-  const hueColors = {R:'#FF3B30',Y:'#FFCC00',G:'#34C759',C:'#32ADE6',B:'#007AFF',M:'#FF2D55'};
+  const hueColors = {R:'#FF3B30',Y:'#FFCC00',G:'#1B6B2E',C:'#32ADE6',B:'#007AFF',M:'#FF2D55'};
   ctx.font = 'bold 11px Outfit, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -1963,20 +1962,20 @@ document.addEventListener('keydown', (e) => {
     <h3>Report a Problem</h3>
     <p class="report-sub">Something look wrong? This will open a GitHub issue with the details pre-filled.</p>
     <div class="report-field">
-      <label>Color you entered</label>
-      <input type="text" id="reportColor" readonly/>
+      <label for="reportColor">Color you entered</label>
+      <input type="text" id="reportColor" readonly>
     </div>
     <div class="report-field">
-      <label>Hue₃₂ result shown</label>
-      <input type="text" id="reportResult" readonly/>
+      <label for="reportResult">Hue₃₂ result shown</label>
+      <input type="text" id="reportResult" readonly>
     </div>
     <div class="report-field">
-      <label>What seemed wrong?</label>
+      <label for="reportDesc">What seemed wrong?</label>
       <textarea id="reportDesc" rows="3" placeholder="e.g. The color shown doesn't look right, the hue seems off..."></textarea>
     </div>
     <div class="report-field">
-      <label>Your GitHub username (optional)</label>
-      <input type="text" id="reportEmail" placeholder="@username"/>
+      <label for="reportEmail">Your GitHub username (optional)</label>
+      <input type="text" id="reportEmail" placeholder="@username">
     </div>
     <div class="report-actions">
       <button class="report-send" onclick="sendReport()" aria-label="Send problem report">Send Report</button>
