@@ -3,6 +3,7 @@
 **A human-readable color notation system. Every code tells you what color it is.**
 
 [![Live Demo](https://img.shields.io/badge/demo-hue32.studio-1F3864?style=flat-square)](https://hue32.studio)
+[![npm](https://img.shields.io/npm/v/hue32?style=flat-square&color=CC3534)](https://www.npmjs.com/package/hue32)
 [![License: CC BY 4.0](https://img.shields.io/badge/license-CC%20BY%204.0-C8A84B?style=flat-square)](LICENSE)
 [![Specification](https://img.shields.io/badge/spec-v1.4-34C759?style=flat-square)](hue32_specification.pdf)
 
@@ -64,6 +65,16 @@ That's indigo. You knew that before looking it up.
 
 ---
 
+## Installation
+
+```bash
+npm install hue32
+```
+
+No dependencies. Works in Node.js 16+ and all modern browsers via ESM.
+
+---
+
 ## Why This Matters
 
 The same color, described in Hue₃₂, means the same thing to:
@@ -104,6 +115,42 @@ Hue₃₂ ⊂ Hue₆₄ ⊂ Hue₁₉₂ — every integer value is valid at any
 ---
 
 ## Reference Implementation
+
+`hue32.py` is the Python reference implementation. A JavaScript package is also available on npm.
+
+### JavaScript (npm)
+
+```bash
+npm install hue32
+```
+
+```javascript
+import { hexToHue32, hue32ToHex, rgbToHue32 } from 'hue32';
+
+hexToHue32('#FF8000').toString()
+// "H:R23Y9 S:24 T:15 L:0 F:0"
+
+hexToHue32('#4B0082').toString()
+// "H:B13M19 S:12 T:15 L:0 F:0"
+```
+
+### CSS Polyfill
+
+Download `hue32-polyfill.js` and add one script tag:
+
+```html
+<script src="hue32-polyfill.js"></script>
+```
+
+Then use `hue32()` anywhere in your CSS:
+
+```css
+color:      hue32(R23Y9, 24, 15);
+background: hue32(none, 31, 0);
+--brand:    hue32(B32, 12, 20);
+```
+
+### Python
 
 `hue32.py` is the Python reference implementation. It requires `colour-science`:
 
@@ -195,6 +242,11 @@ purple    = B8M24   (magenta-leaning)
 | File | Description |
 |------|-------------|
 | `hue32.py` | Python reference implementation |
+| `npm/index.js` | JavaScript package (also on npm as `hue32`) |
+| `npm/index.d.ts` | TypeScript type definitions |
+| `npm/test.js` | Test suite (28 tests) |
+| `hue32-polyfill.js` | CSS polyfill — use `hue32()` in stylesheets today |
+| `hue32-polyfill-demo.html` | Polyfill demo page |
 | `hue32_specification.pdf` | Full specification (v1.4) |
 | `demo/index.html` | Interactive web demo (also at hue32.studio) |
 | `LICENSE` | CC BY 4.0 |
