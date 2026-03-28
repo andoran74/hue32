@@ -1,0 +1,50 @@
+{
+  "name": "hue32",
+  "version": "1.0.0",
+  "description": "A human-readable color notation system anchored to OKLCh. Every code tells you what color it is.",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "default": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "color",
+    "colour",
+    "notation",
+    "oklch",
+    "oklab",
+    "perceptual",
+    "color-science",
+    "design",
+    "css",
+    "rgb",
+    "cmyk",
+    "hex",
+    "conversion"
+  ],
+  "author": "Angel Doran <angel@angeldoran.com> (https://angeldoran.com)",
+  "license": "CC-BY-4.0",
+  "homepage": "https://hue32.studio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andoran74/hue32.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andoran74/hue32/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
