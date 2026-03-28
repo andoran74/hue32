@@ -4,7 +4,7 @@
 
 [![Live Demo](https://img.shields.io/badge/demo-hue32.studio-1F3864?style=flat-square)](https://hue32.studio)
 [![npm](https://img.shields.io/npm/v/hue32?style=flat-square&color=CC3534)](https://www.npmjs.com/package/hue32)
-[![License: CC BY 4.0](https://img.shields.io/badge/license-CC%20BY%204.0-C8A84B?style=flat-square)](LICENSE)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC%20BY--NC%204.0-C8A84B?style=flat-square)](LICENSE)
 [![Specification](https://img.shields.io/badge/spec-v1.4-34C759?style=flat-square)](hue32_specification.pdf)
 
 ---
@@ -272,7 +272,10 @@ This work is licensed under [Creative Commons Attribution 4.0 International (CC 
 You are free to use, share, adapt, and build on Hue₃₂ for any purpose — including commercial use — as long as you give appropriate credit.
 
 **Suggested attribution:**  
-*Hue₃₂ Color Notation System by Angel Doran, licensed under CC BY 4.0. https://hue32.studio*
+*Hue₃₂ Color Notation System by Angel Doran, licensed under CC BY-NC 4.0. https://hue32.studio*
+
+**Commercial licensing:**  
+To use Hue₃₂ in a commercial product or service, contact angel@angeldoran.com.
 
 ---
 
