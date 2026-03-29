@@ -667,6 +667,14 @@
   .turquoise-swatch {
     border-radius: 10px; overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .turquoise-swatch:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  .turquoise-swatch:active {
+    transform: translateY(-1px);
   }
   .turquoise-swatch-color { height: 72px; }
   .turquoise-swatch-name {
@@ -787,51 +795,87 @@
 <p class="hero-sub">Ask ten people. Get ten different answers.</p>
 
 <div class="turquoise-grid">
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(64,224,208); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(64,224,208); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Classic turquoise to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#40E0D0"></div>
     <div class="turquoise-swatch-name">Classic turquoise</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(0,199,210); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(0,199,210); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Blue turquoise to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#00C7D2"></div>
     <div class="turquoise-swatch-name">Blue turquoise</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(26,188,156); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(26,188,156); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Green turquoise to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#1ABC9C"></div>
     <div class="turquoise-swatch-name">Green turquoise</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(0,128,128); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(0,128,128); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Teal turquoise to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#008080"></div>
     <div class="turquoise-swatch-name">Teal turquoise</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(8,232,222); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(8,232,222); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Bright turquoise to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#08E8DE"></div>
     <div class="turquoise-swatch-name">Bright turquoise</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(175,238,238); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(175,238,238); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Pale turquoise to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#AFEEEE"></div>
     <div class="turquoise-swatch-name">Pale turquoise</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(0,206,209); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(0,206,209); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Dark turquoise to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#00CED1"></div>
     <div class="turquoise-swatch-name">Dark turquoise</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(97,207,223); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(97,207,223); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Robin egg blue to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#61CFDF"></div>
     <div class="turquoise-swatch-name">Robin egg blue</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(0,162,184); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(0,162,184); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Turquoise blue to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#00A2B8"></div>
     <div class="turquoise-swatch-name">Turquoise blue</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(39,166,154); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(39,166,154); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Persian turquoise to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#27A69A"></div>
     <div class="turquoise-swatch-name">Persian turquoise</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(72,209,204); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(72,209,204); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Medium turquoise to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#48D1CC"></div>
     <div class="turquoise-swatch-name">Medium turquoise</div>
   </div>
-  <div class="turquoise-swatch">
+  <div class="turquoise-swatch" role="button" tabindex="0" style="cursor:pointer" 
+      onclick="updateConverter(0,220,195); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})"
+      onkeypress="if(event.key==='Enter'){updateConverter(0,220,195); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})}"
+      title="Click to convert Cyan turquoise to Hue₃₂">
     <div class="turquoise-swatch-color" style="background:#00DCC3"></div>
     <div class="turquoise-swatch-name">Cyan turquoise</div>
   </div>
@@ -841,12 +885,13 @@
   There is no wrong answer. That is the problem.<br>
   Color names are pointers that different people aim at different targets.
 </p>
+<p style="font-size:0.78rem; color:var(--gold); margin-top:0.75rem; font-family:'DM Mono',monospace; letter-spacing:0.05em">↑ Click any swatch to convert it →</p>
 
 <div class="turquoise-reveal">
   <h3>Hue₃₂ doesn't replace the name. It gives the name coordinates.</h3>
   <p>Call it whatever you want. But when you need to communicate exactly which turquoise — to a paint manufacturer, a fabric supplier, a screen designer — you have a number that means the same thing to everyone.</p>
   <div class="turquoise-example">
-    <div class="turquoise-example-swatch" style="background:#40E0D0"></div>
+    <div class="turquoise-example-swatch" style="background:#40E0D0; cursor:pointer" onclick="updateConverter(64,224,208); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})" title="Click to convert to Hue₃₂"></div>
     <div class="turquoise-example-code">
       <div class="turquoise-example-notation">H:G6C26 S:26 T:11 L:0 F:0</div>
       <div class="turquoise-example-decoded">
@@ -868,19 +913,19 @@
 <div class="comparison-grid">
 <div class="comp-col">
 <div class="comp-label">RGB</div>
-<div class="color-swatch" style="background:#FF8000" aria-hidden="true"></div>
+<div class="color-swatch" style="background:#FF8000; cursor:pointer; transition:transform 0.15s,box-shadow 0.15s" aria-hidden="true" role="button" tabindex="0" title="Click to convert to Hue₃₂" onclick="updateConverter(255,128,0); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})" onmouseenter="this.style.transform='scale(1.03)'" onmouseleave="this.style.transform=''"></div>
 <div class="comp-code">#FF8000</div>
 <div class="comp-reaction">🤨 I have no idea what color that is.</div>
 </div>
 <div class="comp-col">
 <div class="comp-label">CMYK</div>
-<div class="color-swatch" style="background:#FF8000" aria-hidden="true"></div>
+<div class="color-swatch" style="background:#FF8000; cursor:pointer; transition:transform 0.15s,box-shadow 0.15s" aria-hidden="true" role="button" tabindex="0" title="Click to convert to Hue₃₂" onclick="updateConverter(255,128,0); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})" onmouseenter="this.style.transform='scale(1.03)'" onmouseleave="this.style.transform=''"></div>
 <div class="comp-code">C0 M50 Y100 K0</div>
 <div class="comp-reaction">Maybe some type of orange.</div>
 </div>
 <div class="comp-col hue32">
 <div class="comp-label">Hue₃₂</div>
-<div class="color-swatch" style="background:#FF8000" aria-hidden="true"></div>
+<div class="color-swatch" style="background:#FF8000; cursor:pointer; transition:transform 0.15s,box-shadow 0.15s" aria-hidden="true" role="button" tabindex="0" title="Click to convert to Hue₃₂" onclick="updateConverter(255,128,0); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})" onmouseenter="this.style.transform='scale(1.03)'" onmouseleave="this.style.transform=''"></div>
 <div class="comp-code">H:R23Y9 S:24 T:15</div>
 <div class="comp-readable">
 <span class="tag-hue">mostly red, some yellow</span><br>
@@ -896,19 +941,19 @@
 <div class="comparison-grid">
 <div class="comp-col">
 <div class="comp-label">RGB</div>
-<div class="color-swatch" style="background:#4B0082" aria-hidden="true"></div>
+<div class="color-swatch" style="background:#4B0082; cursor:pointer; transition:transform 0.15s,box-shadow 0.15s" aria-hidden="true" role="button" tabindex="0" title="Click to convert to Hue₃₂" onclick="updateConverter(75,0,130); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})" onmouseenter="this.style.transform='scale(1.03)'" onmouseleave="this.style.transform=''"></div>
 <div class="comp-code">#4B0082</div>
 <div class="comp-reaction">🤨 No idea.</div>
 </div>
 <div class="comp-col">
 <div class="comp-label">CMYK</div>
-<div class="color-swatch" style="background:#4B0082" aria-hidden="true"></div>
+<div class="color-swatch" style="background:#4B0082; cursor:pointer; transition:transform 0.15s,box-shadow 0.15s" aria-hidden="true" role="button" tabindex="0" title="Click to convert to Hue₃₂" onclick="updateConverter(75,0,130); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})" onmouseenter="this.style.transform='scale(1.03)'" onmouseleave="this.style.transform=''"></div>
 <div class="comp-code">C42 M100 Y0 K49</div>
 <div class="comp-reaction">Dark? Purple? Blue?</div>
 </div>
 <div class="comp-col hue32">
 <div class="comp-label">Hue₃₂</div>
-<div class="color-swatch" style="background:#4B0082" aria-hidden="true"></div>
+<div class="color-swatch" style="background:#4B0082; cursor:pointer; transition:transform 0.15s,box-shadow 0.15s" aria-hidden="true" role="button" tabindex="0" title="Click to convert to Hue₃₂" onclick="updateConverter(75,0,130); document.getElementById('convSwatch').scrollIntoView({behavior:'smooth',block:'center'})" onmouseenter="this.style.transform='scale(1.03)'" onmouseleave="this.style.transform=''"></div>
 <div class="comp-code">H:B13M19 S:12 T:15</div>
 <div class="comp-readable">
 <span class="tag-hue">mostly magenta, some blue</span><br>
@@ -1522,6 +1567,8 @@ function updateWheelResult() {
   document.getElementById('wheelHex').textContent = hex;
   document.getElementById('sliderTone').style.background =
     `linear-gradient(to right, #888, ${hex})`;
+  // Keep converter in sync with wheel
+  updateConverter(r, g, b);
 }
 
 canvas.addEventListener('click', (e) => {
