@@ -1,6 +1,6 @@
 {
   "name": "hue32",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A human-readable color notation system anchored to OKLCh. Every code tells you what color it is.",
   "type": "module",
   "main": "./index.js",
