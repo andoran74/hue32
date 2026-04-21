@@ -1516,23 +1516,50 @@ function drawWheel(selectedDeg) {
   ctx.fillStyle = '#F7F4EF';
   ctx.fill();
 
-  // Tick marks
-  for (let i=0;i<192;i++) {
-    let angleDeg = (i/192)*360;
-    let isNamedHue = i%32===0;
-    let isHue32Step = i%6===0;
-    let tickLen = isNamedHue ? 14 : isHue32Step ? 8 : 4;
-    let tickWidth = isNamedHue ? 2 : isHue32Step ? 1.5 : 0.8;
-    let tickColor = isNamedHue ? '#1F3864' : isHue32Step ? '#555' : '#bbb';
-    let angle = (angleDeg-90)*Math.PI/180;
-    let rO = R_INNER + tickLen;
-    let rI = R_INNER + 2;
+  // Tick marks: 6 named-anchor ticks at the OKLCh anchor positions, plus 31
+  // minor ticks evenly spaced within each anchor-to-anchor segment. This
+  // produces 6 + 6*31 = 192 ticks total. Because segments span different
+  // OKLCh arcs, ticks within a wide segment (e.g. R->Y at 80.6 deg) are
+  // visibly farther apart than ticks within a narrow segment (e.g. Y->G at
+  // 32.7 deg) - making the perceptual asymmetry of OKLCh visible at a glance.
+  // Inside each segment, ticks at unit positions 8, 16, 24 get a small visual
+  // bump so the eye can still count blocks of 8.
+  // Ticks extend INWARD from the inner edge of the wheel into the white area,
+  // so they always have full contrast regardless of the underlying wheel color.
+  const anchorOrder = ['R', 'Y', 'G', 'C', 'B', 'M'];
+  function drawTick(angleDeg, length, width, color) {
+    const a = (angleDeg - 90) * Math.PI / 180;
+    const rO = R_INNER - 2;          // start just inside the wheel
+    const rI = R_INNER - 2 - length; // extend inward into the white
     ctx.beginPath();
-    ctx.moveTo(CX+Math.cos(angle)*rI, CY+Math.sin(angle)*rI);
-    ctx.lineTo(CX+Math.cos(angle)*rO, CY+Math.sin(angle)*rO);
-    ctx.strokeStyle = tickColor;
-    ctx.lineWidth = tickWidth;
+    ctx.moveTo(CX + Math.cos(a) * rO, CY + Math.sin(a) * rO);
+    ctx.lineTo(CX + Math.cos(a) * rI, CY + Math.sin(a) * rI);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
     ctx.stroke();
+  }
+  // Draw the 31 minor ticks inside each segment first, so the named-anchor
+  // ticks paint cleanly on top.
+  for (let segIdx = 0; segIdx < 6; segIdx++) {
+    const startName = anchorOrder[segIdx];
+    const endName = anchorOrder[(segIdx + 1) % 6];
+    const a0 = HUE_ANGLES[startName];
+    let a1 = HUE_ANGLES[endName];
+    if (a1 <= a0) a1 += 360;  // M -> R wraparound
+    for (let k = 1; k <= 31; k++) {
+      const angleDeg = (a0 + (k / 32) * (a1 - a0)) % 360;
+      // Visual hierarchy inside the segment: midpoint (k=16) most prominent,
+      // quarter points (8 and 24) medium, all others minor.
+      let len, width, color;
+      if (k === 16)             { len = 7; width = 1.4; color = '#555'; }
+      else if (k === 8 || k === 24) { len = 5; width = 1.0; color = '#888'; }
+      else                          { len = 3; width = 0.7; color = '#bbb'; }
+      drawTick(angleDeg, len, width, color);
+    }
+  }
+  // Draw the six named anchors on top — longest, darkest.
+  for (const name of anchorOrder) {
+    drawTick(HUE_ANGLES[name], 11, 2, '#1F3864');
   }
 
   // Hue labels
@@ -1545,7 +1572,7 @@ function drawWheel(selectedDeg) {
   ctx.textBaseline = 'middle';
   for (let i=0;i<6;i++) {
     let angle = (hueLabelAngles[i]-90)*Math.PI/180;
-    let r = R_INNER - 18;
+    let r = R_INNER - 24;
     let x = CX + Math.cos(angle)*r;
     let y = CY + Math.sin(angle)*r;
     ctx.fillStyle = hueColors[hueLabelNames[i]];
