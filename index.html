@@ -1199,7 +1199,14 @@
 // https://github.com/andoran74/hue32
 // ─────────────────────────────────────────────────────────────
 
-const HUE_ANGLES = { R:0, Y:60, G:120, C:180, B:240, M:300 };
+// OKLCh perceptual hue angles for the six RYGCBM anchors, derived from
+// calibrated sRGB primaries/secondaries converted through XYZ -> OKLab -> OKLCh.
+// These are NOT artist-wheel angles (0/60/120/180/240/300); they are the
+// actual perceptual positions, which is why segments have different arc lengths.
+// Must match hue32.py and index.js to keep the spec, npm package, and live site
+// in agreement.
+const HUE_ANGLES = { R: 29.2232, Y: 109.7828, G: 142.5112,
+                     C: 194.8069, B: 264.0729, M: 328.3520 };
 const L_MIN=0, L_MAX=1, C_MIN=0, C_MAX=0.4;
 const HSTF_MIN=1, HSTF_MAX=32, SNAP=0.25;
 const HUE_ANCHORS = ['R','Y','G','C','B','M'];
@@ -1211,13 +1218,16 @@ const VISUAL_HUE_HEX = {
   B:'#007AFF',
   M:'#FF2D55'
 };
-const HUE_ARCS = [
-  { start:'R', end:'Y', primary:'R', secondary:'Y', reverse:false },
-  { start:'Y', end:'G', primary:'G', secondary:'Y', reverse:true  },
-  { start:'G', end:'C', primary:'G', secondary:'C', reverse:false },
-  { start:'C', end:'B', primary:'B', secondary:'C', reverse:true  },
-  { start:'B', end:'M', primary:'B', secondary:'M', reverse:false },
-  { start:'M', end:'R', primary:'R', secondary:'M', reverse:true  },
+// Anchor-to-anchor segments. Each segment lists primary letter, secondary letter,
+// start angle, end angle, and whether the RGB primary anchor is at the START of
+// the segment (so its component value decreases as t increases) or at the END.
+const _SEGMENTS = [
+  ['R','Y', HUE_ANGLES.R, HUE_ANGLES.Y,           true],
+  ['G','Y', HUE_ANGLES.Y, HUE_ANGLES.G,           false],
+  ['G','C', HUE_ANGLES.G, HUE_ANGLES.C,           true],
+  ['B','C', HUE_ANGLES.C, HUE_ANGLES.B,           false],
+  ['B','M', HUE_ANGLES.B, HUE_ANGLES.M,           true],
+  ['R','M', HUE_ANGLES.M, HUE_ANGLES.R + 360.0,   false],
 ];
 const ACHROMATIC_THRESH = 0.25 * (C_MAX-C_MIN)/(HSTF_MAX-HSTF_MIN);
 
@@ -1240,45 +1250,43 @@ function normalizeDeg(hDeg) {
   return ((hDeg % 360) + 360) % 360;
 }
 
+// Walk the segments table and find which one contains the input hue angle,
+// then linearly interpolate within it to produce primary/secondary components
+// summing to 32. Handles the M->R wraparound segment by extending R past 360.
 function angleToComponents(hDeg) {
-  const normalized = normalizeDeg(hDeg);
-  const arcIndex = Math.floor(normalized / 60) % 6;
-  const localAngle = normalized - arcIndex * 60;
-  const localStep = snap((localAngle / 60) * HSTF_MAX);
-  const arc = HUE_ARCS[arcIndex];
-
-  let pv, sv;
-  if (arc.reverse) {
-    pv = localStep;
-    sv = HSTF_MAX - localStep;
-  } else {
-    pv = HSTF_MAX - localStep;
-    sv = localStep;
+  const norm = normalizeDeg(hDeg);
+  for (const [rgb, ycm, a0, a1, rgbAtStart] of _SEGMENTS) {
+    const test = norm >= a0 ? norm : norm + 360;
+    if (test >= a0 && test <= a1) {
+      const span = a1 - a0;
+      const t = span > 0 ? Math.max(0, Math.min(1, (test - a0) / span)) : 0;
+      const rv = snap(rgbAtStart ? (1 - t) * HSTF_MAX : t * HSTF_MAX);
+      const sv = snap(rgbAtStart ? t * HSTF_MAX : (1 - t) * HSTF_MAX);
+      return [rv > 0 ? rgb : null, rv, sv > 0 ? ycm : null, sv];
+    }
   }
-
-  const hp = pv >= SNAP ? arc.primary : null;
-  const hs = sv >= SNAP ? arc.secondary : null;
-
-  return [hp, pv, hs, sv];
+  return ['R', HSTF_MAX, null, 0];
 }
 
+// Inverse of angleToComponents. Reconstructs the OKLCh hue angle from the
+// primary/secondary letter pair and their integer values.
 function componentsToAngle(p, pv, s, sv) {
   if (!p && !s) return 0;
-  if (!s || sv < SNAP) return HUE_ANGLES[p];
-  if (!p || pv < SNAP) return HUE_ANGLES[s];
-
+  if (!s || sv === 0) return HUE_ANGLES[p];
+  if (!p || pv === 0) return HUE_ANGLES[s];
   const total = pv + sv;
-  let pa = HUE_ANGLES[p];
-  let sa = HUE_ANGLES[s];
-
-  if ((p === 'G' && s === 'Y') || (p === 'B' && s === 'C') || (p === 'R' && s === 'M')) {
-    const t = pv / total;
-    if (p === 'R' && s === 'M' && sa > pa) sa -= 360;
-    return normalizeDeg(sa + t * (pa - sa));
-  }
-
   const t = sv / total;
-  if (s === 'R' && pa > sa) sa += 360;
+  let pa = HUE_ANGLES[p], sa = HUE_ANGLES[s];
+  // Three "reverse" segments where the primary anchor is at the segment END:
+  // walk from secondary anchor toward primary anchor.
+  if (p === 'G' && s === 'Y') return normalizeDeg(sa + t * (pa - sa));
+  if (p === 'B' && s === 'C') return normalizeDeg(sa + t * (pa - sa));
+  if (p === 'R' && s === 'M') {
+    // Wraparound through 0 degrees: extend R past 360 for clean interpolation.
+    const rExt = pa + 360;
+    return normalizeDeg(sa + t * (rExt - sa));
+  }
+  // Forward segments (R/Y, G/C, B/M): walk from primary anchor toward secondary.
   return normalizeDeg(pa + t * (sa - pa));
 }
 
@@ -1381,32 +1389,51 @@ function interpolateHueDeg(h1, h2, t) {
   return normalizeDeg(h1 + delta * t);
 }
 
+// Walk the actual OKLCh segments instead of evenly-spaced 60deg arcs, so the
+// rendered wheel colors align with the anchor labels. The wheel will look
+// visibly asymmetric (R->Y wide, Y->G narrow) - this is the correct rendering
+// of a perceptually uniform color space, and matches the rest of the system.
 function visualHueRgb(hDeg) {
   const normalized = normalizeDeg(hDeg);
-  const arcIndex = Math.floor(normalized / 60) % 6;
-  const t = (normalized - arcIndex * 60) / 60;
-  const start = HUE_ANCHORS[arcIndex];
-  const end = HUE_ANCHORS[(arcIndex + 1) % HUE_ANCHORS.length];
-  const [L1, C1, H1] = VISUAL_HUE_OKLCH[start];
-  const [L2, C2, H2] = VISUAL_HUE_OKLCH[end];
-  const L = L1 + (L2 - L1) * t;
-  const C = C1 + (C2 - C1) * t;
-  const H = interpolateHueDeg(H1, H2, t);
+  // Find which OKLCh segment this angle belongs to
+  for (let i = 0; i < _SEGMENTS.length; i++) {
+    const [, , a0, a1] = _SEGMENTS[i];
+    const test = normalized >= a0 ? normalized : normalized + 360;
+    if (test >= a0 && test <= a1) {
+      const start = HUE_ANCHORS[i];
+      const end = HUE_ANCHORS[(i + 1) % HUE_ANCHORS.length];
+      const t = (test - a0) / (a1 - a0);
+      const [L1, C1, H1] = VISUAL_HUE_OKLCH[start];
+      const [L2, C2, H2] = VISUAL_HUE_OKLCH[end];
+      const L = L1 + (L2 - L1) * t;
+      const C = C1 + (C2 - C1) * t;
+      const H = interpolateHueDeg(H1, H2, t);
+      return oklchToRgb(L, C, H);
+    }
+  }
+  // Fallback (should be unreachable since segments cover full circle)
+  const [L, C, H] = VISUAL_HUE_OKLCH.R;
   return oklchToRgb(L, C, H);
 }
 
 function visualHueOklch(hDeg) {
   const normalized = normalizeDeg(hDeg);
-  const arcIndex = Math.floor(normalized / 60) % 6;
-  const t = (normalized - arcIndex * 60) / 60;
-  const start = HUE_ANCHORS[arcIndex];
-  const end = HUE_ANCHORS[(arcIndex + 1) % HUE_ANCHORS.length];
-  const [L1, C1, H1] = VISUAL_HUE_OKLCH[start];
-  const [L2, C2, H2] = VISUAL_HUE_OKLCH[end];
-  const L = L1 + (L2 - L1) * t;
-  const C = C1 + (C2 - C1) * t;
-  const H = interpolateHueDeg(H1, H2, t);
-  return [L, C, H];
+  for (let i = 0; i < _SEGMENTS.length; i++) {
+    const [, , a0, a1] = _SEGMENTS[i];
+    const test = normalized >= a0 ? normalized : normalized + 360;
+    if (test >= a0 && test <= a1) {
+      const start = HUE_ANCHORS[i];
+      const end = HUE_ANCHORS[(i + 1) % HUE_ANCHORS.length];
+      const t = (test - a0) / (a1 - a0);
+      const [L1, C1, H1] = VISUAL_HUE_OKLCH[start];
+      const [L2, C2, H2] = VISUAL_HUE_OKLCH[end];
+      const L = L1 + (L2 - L1) * t;
+      const C = C1 + (C2 - C1) * t;
+      const H = interpolateHueDeg(H1, H2, t);
+      return [L, C, H];
+    }
+  }
+  return VISUAL_HUE_OKLCH.R;
 }
 
 function rgbToHex(r,g,b) {
