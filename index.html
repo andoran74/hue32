@@ -472,6 +472,130 @@
     padding: 0 0.75rem 0.6rem; line-height: 1.4;
   }
 
+  /* ── CASE STUDY ── */
+  .case-study {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .case-intro p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .case-intro .cs-code,
+  .case-intro .cs-hex {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.88rem;
+    background: rgba(31, 56, 100, 0.06);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    color: var(--accent);
+  }
+  .cs-reference {
+    max-width: 320px;
+  }
+  .cs-candidates-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: -0.5rem;
+  }
+  .cs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .cs-card {
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--paper);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .cs-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  .cs-card-ref { border: 2px solid var(--ink); }
+  .cs-card-best { border: 2px solid var(--g); }
+  .cs-card-close { border: 1.5px solid var(--gold); }
+  .cs-swatch {
+    height: 80px;
+    background: var(--cs-color);
+  }
+  .cs-card-ref .cs-swatch,
+  .cs-card-best .cs-swatch {
+    height: 96px;
+  }
+  .cs-card-body { padding: 0.7rem 0.85rem 0.85rem; }
+  .cs-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .cs-tag-ref { color: var(--ink); font-weight: 600; }
+  .cs-tag-best { color: var(--g); font-weight: 700; }
+  .cs-tag-close { color: var(--gold); font-weight: 600; }
+  .cs-tag-no { color: var(--muted); }
+  .cs-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+  .cs-code-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+  }
+  .cs-note {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+  .cs-takeaways {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 0.5rem;
+    padding: 1.25rem 1.4rem;
+    background: rgba(31, 56, 100, 0.04);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+  }
+  .cs-takeaway {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+  }
+  .cs-takeaway-num {
+    flex-shrink: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cs-takeaway-body {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .cs-takeaway-body strong { color: var(--accent); }
+
   /* ── FOOTER LINKS ── */
   .footer-links {
     margin-bottom: 0.5rem;
@@ -1064,6 +1188,166 @@
     </div>
   </div>
 </div>
+</section>
+
+<hr class="rule">
+<section>
+  <div class="section-label">Case Study</div>
+  <h2>Matching a dress to ten handbags</h2>
+  <p class="sub">A blue-and-white floral dress, ten candidate handbags, four lighting conditions. Hex codes and color names both fail. Hue₃₂ finds the match.</p>
+
+  <div class="case-study">
+    <div class="case-intro">
+      <p>The reference is the dominant blue of the dress fabric: <code class="cs-code">H:B21M11 S:11 T:10</code> — about 65% blue, 35% magenta, dark, softly saturated. <strong>The hex value alone (<code class="cs-hex">#12326C</code>) tells you nothing about what color this actually is.</strong></p>
+    </div>
+
+    <div class="cs-reference">
+      <div class="cs-card cs-card-ref" style="--cs-color:#12326C">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-ref">Reference</div>
+          <div class="cs-name">Dress fabric</div>
+          <div class="cs-code-line">H:B21M11 S:11 T:10</div>
+          <div class="cs-note">Indoor lighting · sampled in Adobe Illustrator</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-candidates-label">The candidates — eleven handbag samples across four lighting conditions:</div>
+
+    <div class="cs-grid">
+      <div class="cs-card cs-card-best" style="--cs-color:#13346F">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-best">Best match ✓✓</div>
+          <div class="cs-name">KS wristlet</div>
+          <div class="cs-code-line">H:B19M13 S:14 T:10</div>
+          <div class="cs-note">White background</div>
+        </div>
+      </div>
+
+      <div class="cs-card cs-card-close" style="--cs-color:#1A3A6E">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-close">Close ✓</div>
+          <div class="cs-name">KS clutch</div>
+          <div class="cs-code-line">H:B19M13 S:14 T:9</div>
+          <div class="cs-note">Mixed indoor light</div>
+        </div>
+      </div>
+
+      <div class="cs-card cs-card-close" style="--cs-color:#1B3870">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-close">Close ✓</div>
+          <div class="cs-name">KS tote</div>
+          <div class="cs-code-line">H:B20M12 S:13 T:9</div>
+          <div class="cs-note">Outdoor light</div>
+        </div>
+      </div>
+
+      <div class="cs-card cs-card-close" style="--cs-color:#234280">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-close">Close ✓</div>
+          <div class="cs-name">KS scallop tote</div>
+          <div class="cs-code-line">H:B19M13 S:14 T:12</div>
+          <div class="cs-note">Outdoor light</div>
+        </div>
+      </div>
+
+      <div class="cs-card" style="--cs-color:#1A4A8A">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-no">Too pure blue</div>
+          <div class="cs-name">KS crossbody</div>
+          <div class="cs-code-line">H:B29M4 S:14 T:7</div>
+          <div class="cs-note">Hue diverges — only 12% magenta vs. dress's 35%</div>
+        </div>
+      </div>
+
+      <div class="cs-card" style="--cs-color:#1F5680">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-no">Cyan shift</div>
+          <div class="cs-name">KS crossbody</div>
+          <div class="cs-code-line">H:B26M6 S:18 T:13</div>
+          <div class="cs-note">Same bag, warm indoor light — leans cyan</div>
+        </div>
+      </div>
+
+      <div class="cs-card" style="--cs-color:#22386A">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-no">Shadow shift</div>
+          <div class="cs-name">KS scallop tote</div>
+          <div class="cs-code-line">H:B17M15 S:18 T:8</div>
+          <div class="cs-note">Same bag in shadow — shade and tone shift, hue stable</div>
+        </div>
+      </div>
+
+      <div class="cs-card" style="--cs-color:#1F4080">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-no">Too pure blue</div>
+          <div class="cs-name">KS mini tote</div>
+          <div class="cs-code-line">H:B23M9 S:16 T:12</div>
+          <div class="cs-note">Wood-floor lighting</div>
+        </div>
+      </div>
+
+      <div class="cs-card" style="--cs-color:#3A2E78">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-no">Violet</div>
+          <div class="cs-name">KS tassel crossbody</div>
+          <div class="cs-code-line">H:B16M16 S:11 T:16</div>
+          <div class="cs-note">Equal blue/magenta — eliminated immediately</div>
+        </div>
+      </div>
+
+      <div class="cs-card" style="--cs-color:#0E5870">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-no">Wrong family</div>
+          <div class="cs-name">KS teal messenger</div>
+          <div class="cs-code-line">H:B31C1 S:16 T:6</div>
+          <div class="cs-note">Cyan secondary, not magenta — different family entirely</div>
+        </div>
+      </div>
+
+      <div class="cs-card" style="--cs-color:#33486E">
+        <div class="cs-swatch"></div>
+        <div class="cs-card-body">
+          <div class="cs-tag cs-tag-no">Too muted</div>
+          <div class="cs-name">KS hobo (two-tone)</div>
+          <div class="cs-code-line">H:B19M13 S:16 T:4</div>
+          <div class="cs-note">Correct hue family, but T:4 puts it in near-gray range</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-takeaways">
+      <div class="cs-takeaway">
+        <div class="cs-takeaway-num">1</div>
+        <div class="cs-takeaway-body">
+          <strong>The hue axis eliminates fast.</strong> The teal messenger (B31C1) and tassel crossbody (B16M16) were ruled out on sight — wrong color family or violet, despite both reading as &ldquo;blue&rdquo; in casual conversation.
+        </div>
+      </div>
+      <div class="cs-takeaway">
+        <div class="cs-takeaway-num">2</div>
+        <div class="cs-takeaway-body">
+          <strong>Hue is stable across lighting; shade and tone are not.</strong> The same scallop tote in outdoor vs. shadow light gave the same hue (B19M13 vs. B17M15) but different shade/tone values. Hue₃₂ surfaces this distinction explicitly.
+        </div>
+      </div>
+      <div class="cs-takeaway">
+        <div class="cs-takeaway-num">3</div>
+        <div class="cs-takeaway-body">
+          <strong>Axis-level comparison wins on close calls.</strong> The hobo bag matched the dress's hue exactly (B19M13) but was eliminated on T:4 — too desaturated. A tone difference invisible to the name &ldquo;navy&rdquo; is immediately apparent in the notation.
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 </div><aside class="tool-sidebar"><section>
 <div class="section-label">Try It</div>
