@@ -89,6 +89,26 @@ No lookup tables. No license fees. No proprietary system. Just coordinates.
 
 ---
 
+## Case Study: Dress to Handbag
+
+A blue-and-white floral print dress. Ten candidate handbags. Four lighting conditions (studio white, warm indoor, outdoor daylight, mixed ambient). The dominant blue of the dress samples to `#12326C` — which, in Hue₃₂, is `H:B21M11 S:11 T:10`: about 65% blue, 35% magenta, dark, softly saturated.
+
+Color names failed: every candidate was called "navy" or "blue" somewhere. Hex codes failed: the same bag photographed under two lighting conditions produced visibly different values. But Hue₃₂ found the match:
+
+| Item | Hue₃₂ | Why |
+|------|--------|-----|
+| Dress (reference) | H:B21M11 S:11 T:10 | — |
+| KS wristlet (white bg) | H:B19M13 S:14 T:10 | **Best match** — identical tone, nearest hue ratio |
+| KS teal messenger | H:B31C1 S:16 T:6 | Eliminated — cyan secondary, wrong family |
+| KS tassel crossbody | H:B16M16 S:11 T:16 | Eliminated — equal B/M = violet |
+| KS hobo (two-tone) | H:B19M13 S:16 T:4 | Right hue, but T:4 is near-gray |
+
+Three properties made this work. (1) The Hue axis eliminates fast — a wrong secondary letter is immediately visible. (2) Hue is stable across lighting conditions where shade and tone shift, so practitioners can compare hue family membership across photos taken in different conditions. (3) Axis-level comparison wins close calls — the hobo bag matched hue exactly but was eliminated on tone alone.
+
+See the full case study at [hue32.studio](https://hue32.studio#case-study).
+
+---
+
 ## Reference Space
 
 Hue₃₂ is anchored to **OKLCh** (the cylindrical form of OKLab), chosen for perceptual uniformity across the full gamut — including the blue region where CIE L\*C\*H\* is known to be non-uniform. OKLCh is already used in CSS Color Level 4.
@@ -227,13 +247,16 @@ Hue₃₂ defines exactly nine named color anchors. All other color names are ou
 | black | S:1 T:0 |
 | gray | S:16 T:0 |
 
-Your personal definitions sit naturally within the system:
+Your personal definitions sit naturally within the system. For example, different people place "indigo" in different places on the wheel:
 
 ```
-indigo    = B24M8   (blue-leaning, between blue and violet)
-violet    = B16M16  (exact midpoint)
-purple    = B8M24   (magenta-leaning)
+B24M8     blue-leaning indigo (closer to Newton's original)
+B13M19    magenta-leaning indigo (what #4B0082 actually computes to)
+B16M16    exact midpoint — sometimes called violet
+B8M24     purple — magenta-leaning, past the midpoint
 ```
+
+The point of Hue₃₂ isn't to settle which one is "right." It's to let everyone state precisely which one they mean.
 
 ---
 
@@ -249,7 +272,7 @@ purple    = B8M24   (magenta-leaning)
 | `hue32-polyfill-demo.html` | Polyfill demo page |
 | `hue32_specification.pdf` | Full specification (v1.4) |
 | `demo/index.html` | Interactive web demo (also at hue32.studio) |
-| `LICENSE` | CC BY 4.0 |
+| `LICENSE` | CC BY-NC 4.0 |
 
 ---
 
@@ -267,9 +290,9 @@ The full specification (v1.4) covers the mathematical reference space, axis defi
 
 ## License
 
-This work is licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE).
+This work is licensed under [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](LICENSE).
 
-You are free to use, share, adapt, and build on Hue₃₂ for any purpose — including commercial use — as long as you give appropriate credit.
+You are free to use, share, and adapt Hue₃₂ for **non-commercial purposes** as long as you give appropriate credit. Commercial use requires a separate license — see below.
 
 **Suggested attribution:**  
 *Hue₃₂ Color Notation System by Angel Doran, licensed under CC BY-NC 4.0. https://hue32.studio*
